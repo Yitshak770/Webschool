@@ -107,3 +107,23 @@ for (let k = 0; k < a.length; k++) {
 }
 alert ("la somme des nombres divisibles par 5 et 8 est "+ sum);
 }
+
+//PALINDROMES
+function essai9() {
+    let num = prompt ("saisissez un nombre entier :");
+    let rev ="";
+    let signe = "";
+    if (num < 0) {
+        signe = "-";
+        num = -num;
+    } else if (num == 0) {
+        rev = 0;
+    }
+    while (num > 0) {
+        temp = num % 10;
+        num = (num-temp)/10;
+        rev += temp;
+    }
+    rev = rev + signe;
+    alert (`voici votre nombre à l'envers : ${rev}`);
+}
