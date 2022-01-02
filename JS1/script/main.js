@@ -1,3 +1,5 @@
+"use strict";
+
 // CONCATENATION
 function essai1() {
 let name = prompt ("saisissez votre prénom");
@@ -127,3 +129,250 @@ function essai9() {
     rev = rev + signe;
     alert (`voici votre nombre à l'envers : ${rev}`);
 }
+
+// PAIRS IMPAIRS
+function essai10() {
+    let N1 = prompt ('please enter a number');
+let N = parseInt (N1);
+let R = (N % 2);
+let P = [];
+let I = [];
+let S = "";
+let RP = 0;
+if (R == 0)  {
+    S = "pair";
+    RP = RP - 1;
+}
+else {
+    S = "impair";
+    I.push (R);
+    N = N-2;
+};
+for ( let i=0 ; i < N/2 ; i++ ) {
+    R = R + 2;
+    I.push (R);
+    RP = RP + 2;
+    P.push (RP);
+}
+alert ('le nombre saisi est un nombre ' + S + ' et les tous les pairs sont '+ P + ' et les tous les impairs sont ' + I); 
+}
+
+// OPEN - CLOSE
+let fenetre = "";
+function essai11 () {
+    fenetre = window.open("https://demo770.com", "name", "width=400,height=200");
+}
+function essai12 () {
+    fenetre.close();
+}
+
+// CONFIRM - TOLOWERCASE
+function essai13 () {
+    let texte = prompt ('veuillez entrer un mot en majuscule ou minuscule').toLowerCase();
+    confirm ("Converti en minuscules, vous avez entré \n" + texte + "\n exact ?");
+    alert ("merci");
+}
+
+// CONVERTIT TABLEAU EN LISTE (FOR)
+function essai14 () {
+    let cars = ["mazda", "ford", "bmw"];
+    let qte = cars.length;
+    let text = "";
+    for (let i = 0; i < qte; i++) {
+        text += "car " + ( i + 1 ) + ": " + cars[i] + "\n";        
+    }
+    alert (text);
+}
+
+// MAGIC NUMBER 26
+function essai15 () {
+    let f = false;
+    let num = 0;
+    let arr = [];
+    for (let i = 0; i < 5; i++) {
+        num = parseInt(prompt ('please enter a number'));    
+        if (num < 1) {
+            continue;
+        } else {
+            let sum = 0;
+            while (num > 0) {
+                sum += num % 10;
+                num = Math.trunc(num / 10);
+            }
+            arr.push(sum);
+            if(sum === 26) {
+                f = true;
+                break;
+            }
+        }
+    }
+    if(f) {
+        alert ("magic number found");
+    }
+    alert("Your numbers are " + arr.join(" & "));
+}
+
+// METHODES DANS ARRAYS
+function essai16 () {
+    let cars = ["Mazda", "Ford", "BMW", "Fiat", "Honda"];
+    alert (cars.join(", ") + " - Join transforme un array en string"); //transforme un array en string sans modifier le array
+    alert (cars.slice( 1 , 4 ) + " - Slice prends une portion du array"); // prends une portion du 1 au 3
+    if (cars.includes("Ford")) {
+        alert ("This car position is : " + cars.indexOf("Ford") + " - Obtenu en utilisant includes et indexOf");  // si un élément n'existe pas il retourne -1
+    } else {
+        alert("This car doesn't exist");
+    }
+    alert (cars.shift() + " - Shift supprime le premier élément du array \n et il reste donc " + cars);
+    alert (cars.pop() + " - Pop supprime le dernier élément du array \n et il reste donc " + cars);
+    alert (cars.sort() + " - Sort trie par ordre alphabetique");
+    alert (cars.reverse() + " - Reverse trie par ordre alphabetique inversé");
+    cars.push("Honda"); alert ( "Push ajoute un élément (Honda) en fin de array - et voici donc le résultat " + cars);
+    cars.splice(1 , 0 , "Tesla", "Toyota")          //  le premier numéro indique où commence le changement
+                                                    //  le deuxième indique le nombre d'éléments à supprimer
+                                                    //  les éléments suivants sont ajoutés à l'endroit indiqué à la première position
+    alert ( "Splice ajoute et retire des éléments où on le souhaite - et voici donc le résultat " + cars);
+}
+
+// ENLERVER UN ELEMENT D'UN ARRAY DONT ON NE CONNAIT PAS LA POSITION
+function essai17 () {
+    let cars = ["Mazda", "Ford", "BMW", "Fiat", "Honda", "Ferrari", "Toyota", "Tesla"];
+    let voiture = prompt ("quelle voiture voulez-vous retirer de la liste ci-dessous ? \n" + cars.join(" ,"));
+    let N = cars.indexOf(voiture);
+    let deleted = "";
+    if (N >= 0) {
+        deleted = cars.splice( N , 1);  // effectue l'opération et donne les éléments deleted
+        alert ("Opération réussie "+ deleted +" a bien été retiré et voici la nouvelle liste \n" + cars.join(" ,"));
+    } else { 
+        alert("This car doesn't exist");
+    }
+}
+
+// METHODES DANS DES STRING
+function essai18() {
+    let str = "a a z e r t y u i o p"
+    if (str.includes("t")) {
+        alert ("il y a bien un t et sa position est : " + str.indexOf("t") + " - Obtenu en utilisant includes et indexOf");  // si un élément n'existe pas il retourne -1
+    } else {
+        alert("cette lettre n'est pas présente");
+    }
+    str.split(" "); // transforme un string en array - chaque espace génère un nouvel élément
+    alert (str + " est devenu un array grace à split");
+    let str2 = str.replace("a", "q");
+    alert (str2);
+    let str3 = str.replaceAll("a", "q");
+    alert (str3);
+}
+
+// EXERCICE 7 - 5 ETUDIANTS
+function essai19() {
+    let arr = [ ];
+    for (let i = 0; i < 5; i++) {
+        arr.push(prompt ("enter a student :"));
+    }
+    alert ("the students are " + arr.sort().join(", "));
+}
+
+// EXERCICE 8 - EMAIL
+function essai20() {
+
+    let myEmail = prompt ('veuillez entrer votre adresse email').toLowerCase();
+    let E = 0;  // première position après le @
+    let G = ""; // les 9 caractères ce qui se trouvent après le @
+    let F = ""; // tout ce qui se trouve après le @
+    let H = ""; // tout ce qui se trouve jusqu'au @ (@ inclus)
+        
+    E = myEmail.indexOf("@")+1;
+    G = (myEmail.slice( E , E+9 ));
+    F = (myEmail.slice( E ));  // tout ce qui se trouve après le E
+    H = (myEmail.slice( 0 , E ));
+
+    if (E > 0 && F.includes(".")) {
+
+        if (G === "gmail.com") {
+            myEmail = (H.replaceAll(".", ""))+"gmail.com";
+        } 
+        alert ("Votre adresse " + myEmail + " a bien été enregistrée");
+
+    } else {
+        alert("veuillez entrer une adresse email valide");
+    }
+
+}
+
+// EXERCICE 1 - VOYELLES ET CONSONNES
+function essai21() {
+
+    let nom = "";
+    let V = [];  // liste des voyelles
+    let C = [];  // liste des consonnes
+    
+    nom = prompt ('veuillez entrer vos nom et prénom').toLowerCase();
+       
+    for (let i = 0 ; i < nom.length ;  i++) {
+        if (("aeiouy").includes(nom[i])){
+            V.push(nom[i]);
+        } else if (("bcdfghjklmnpqrstvwxz").includes(nom[i])) {  // élimine les carractères qui ne sont ni des voyelles ni des consonnes
+            C.push(nom[i]);
+        } 
+    }
+
+    V = V.sort().join(", ");
+    C = C.sort().join(", ");
+    
+    alert("Votre chaîne contient les voyelles suivantes : " + V + "\n Et les consonnes suivantes : " + C);
+   
+}
+
+// TABLEAU DES LETTRES D'UN STRING
+function essai22() {
+
+    let texte = "";
+    let res = [];
+    let lig = {
+        letter: "",
+        amount: ""
+    };
+        
+    texte = prompt ('veuillez entrer un ou plusieurs mots').toUpperCase();
+    let N = texte.length;
+    
+    for (let i = 0 ; i < N ;  i++) {
+        alert (texte.split(texte[i]).length-1);
+        res.push(lig["letter"] = texte[i],
+                lig["amount"] = texte.split(texte[i]).length-1)
+    }
+    alert(res);
+    console.log(res);
+
+
+}
+// NOMBRE DE VOYELLES ET CONSONNES
+function essai23() {
+
+let temp=prompt("veuillez saisir votre nom").toLowerCase();
+let voyelle="aeiouy";
+let consonne="zrtpqsdfghjklmwxcvbn";
+let nbrVoyelle=0;
+let nbrConsonne=0;
+
+for(var i=0;i<consonne.length;i++){
+    
+    if (temp.includes(consonne[i])){
+        nbrConsonne++;
+    }
+    if (temp.includes(voyelle[i])){
+        nbrVoyelle++;
+    }
+    
+}
+alert("il y a dans votre nom "+nbrVoyelle+" voyelles \n et "+nbrConsonne+" consonnes")
+}
+
+// ESSAIS
+function essai24() {};
+
+// ESSAIS
+function essai25() {};
+
+// ESSAIS
+function essai26() {};
