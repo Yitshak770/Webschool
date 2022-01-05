@@ -233,7 +233,7 @@ function essai16 () {
     alert ( "Splice ajoute et retire des éléments où on le souhaite - et voici donc le résultat " + cars);
 }
 
-// ENLERVER UN ELEMENT D'UN ARRAY DONT ON NE CONNAIT PAS LA POSITION
+// ENLEVER UN ELEMENT D'UN ARRAY DONT ON NE CONNAIT PAS LA POSITION
 function essai17 () {
     let cars = ["Mazda", "Ford", "BMW", "Fiat", "Honda", "Ferrari", "Toyota", "Tesla"];
     let voiture = prompt ("quelle voiture voulez-vous retirer de la liste ci-dessous ? \n" + cars.join(" ,"));
@@ -368,11 +368,172 @@ for(var i=0;i<consonne.length;i++){
 alert("il y a dans votre nom "+nbrVoyelle+" voyelles \n et "+nbrConsonne+" consonnes")
 }
 
-// ESSAIS
-function essai24() {};
+// SWITCH CALCUL DE L'IMPOT
+function essai24() {
+
+    let salary = parseInt(prompt("Enter a salary :"));
+    let taxes = 0;
+
+    switch (true) {
+        case salary > 25000:
+            
+            break;
+    
+        default:
+            break;
+    }
+    const S = prompt ("saisissez votre salaire en shekels"); 
+let i = 0;
+if ( S < 25000 ) {
+    i = S / 10;    
+} else if ( S < 50000 ){
+    i = S/10 + (S-25000)/5;
+} else if ( S < 100000 ){
+    i = S/10 + (S-25000)/5 + (S-50000)*3/10;
+} else if ( S < 150000 ){
+    i = S/10 + (S-25000)/5 + (S-50000)*3/10 + (S-100000)*2/5;
+} else {
+    i = S/10 + (S-25000)/5 + (S-50000)*3/10 + (S-100000)*2/5 + (S-150000)/2;
+} 
+alert ("Voici le montant de l'impot à payer : " + i + " shekels")
+
+
+};
 
 // ESSAIS
 function essai25() {};
+//essais de fonctions
 
-// ESSAIS
-function essai26() {};
+// CHANGER LA COULEUR EN BLEU
+function essai26() {
+    document.querySelector(".bleu").style.color = "blue";
+    
+};
+
+// TOOLS
+function essai27() {
+    const TOOLS = {
+        fixEmail: function (email) {                        // fixemail --> clé  function --> valeur
+            let arr = email.toLowerCase().split("@");
+            if (arr[1] === "gmail.com") {
+                arr[0] = arr[0].replaceAll("." , "");
+            }
+            return arr[0] + "@" + arr[1];
+        },
+        fixNan: function (num) {
+            let dec = parseFloat(num);
+            if (isNaN(dec)) {
+                return 0;
+            }
+            let int = parseInt (num);
+            if ( int < dec ) { 
+                return dec;
+            }
+            return int;
+
+        }
+    }
+    let myEmail = TOOLS.fixEmail(prompt("enter your email please"));
+    alert(myEmail);
+    let age = TOOLS.fixNan(prompt("How old are you ?"));
+};
+
+// FOREACH
+function essai28() {
+
+    const cars = [
+        {
+            make : "Jaguar",
+            model : "XJ50",
+            category : "Luxury",
+            price : "$80000",
+            image : "xj50.jpg"
+        },
+        {
+            make : "Ferrari",
+            model : "F8",
+            category : "Sport",
+            price : "$150000",
+            image : "ferrari.jpg"
+        },
+        {
+            make : "Toyota",
+            model : "Rav4",
+            category : "SUV",
+            price : "$40000",
+            image : "rav4.jpg"
+        },
+        {
+            make : "Tesla",
+            model : "Model X",
+            category : "Electric",
+            price : "$60000",
+            image : "tesla.jpg"
+        },
+        {
+            make : "Opel",
+            model : "Corsa",
+            category : "Economy",
+            price : "$20000",
+            image : "corsa.jpg"
+        }
+    ]
+
+    let listeCars = document.querySelector(".liste");
+    
+    cars.forEach(createHTML);
+    
+    function createHTML(car,i) {
+
+        listeCars.innerHTML += 
+        `<div class = "voitures" >
+            <div class = "marque">${car.make}</div>
+            <div class = "modele">${car.model}</div> 
+            <div class = "categ">${car.category}</div>  
+            <div class = "price">${car.price}</div>
+            <img class = "photo" src="./assets/${car.image}" alt=""> 
+            <div class="fermeture">X</div>  
+        </div>`;
+    }
+
+}
+
+
+
+
+
+// FORM
+function essai29() {
+    // document.querySelector(".container").className =  "container visible";
+    document.querySelector(".container").classList.add("visible");
+}
+function check() {
+    let reg = [
+        {firstName : "Bob", userName : "BB", passWord : "123"},
+        {firstName : "Yehouda", userName : "YY", passWord : "12"},
+        {firstName : "Nissan", userName : "NN", passWord : "1234"}
+    ];
+    let username = document.querySelector("input[type=text]");
+    let pass = document.querySelector("input[type=password]");
+
+    if (username.value == "" || pass.value == "" ) {
+        document.querySelector("H1").style.color = "red" ;
+        document.querySelector("H1").innerHTML = "Please fill Username and Password" ; 
+    } else { 
+        for (let i = 0; i < reg.length; i++) {
+            
+            if (username.value === reg[i].userName && pass.value === reg[i].passWord) { 
+                document.querySelector("H1").style.color = "black" ;  
+                document.querySelector("H1").innerHTML = "Welcome " + reg[i].firstName
+                username.value = "";
+                pass.value = "";
+                break;
+            } else { 
+                document.querySelector("H1").style.color = "red" ;
+                document.querySelector("H1").innerHTML = "Username or Password invalid" ;
+            } 
+            
+        }
+    }
+
+    }

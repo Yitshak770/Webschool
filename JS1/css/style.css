@@ -13,3 +13,83 @@ button {
 .marge-bas {
     margin-bottom: 0;
 }
+.container {
+    display: none;
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    width: 25%;
+}
+.visible {
+    display: block!important;
+}
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+input {
+    margin: 10px;
+    height : 30px;
+    width : 20vw;
+    padding: 5px;
+    font-size: 16px;
+}
+input:not(.submit) {
+    background-color: rgb(186, 247, 247);
+}
+.submit {
+    cursor: pointer;
+    height : 40px;
+    width : 21.2vw;
+}
+.voitures {
+    background-color: rgb(192, 233, 252);
+    width: 550px;
+    height:250px;
+    position: relative;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 20px;
+}
+.photo{
+    width : 200px;
+    position: absolute;
+    bottom: 30px;
+    left : 30px
+}
+.categ{
+    position: absolute;
+    top : 15px;
+    font-size: 30px;
+    font-weight: 700;
+    left: 30px;
+}
+.marque{
+    position: absolute;
+    top : 75px;
+    font-size: 30px;
+    left: 300px;
+}
+.modele{
+    position: absolute;
+    top : 130px;
+    font-size: 20px;
+    left: 300px;
+}
+.price{
+    position: absolute;
+    top : 175px;
+    font-size: 20px;
+    left: 300px;
+}
+.fermeture{
+    position: absolute;
+    top : 30px;
+    font-size: 18px;
+    right: 35px;
+    color: white;
+    background-color: rgb(219, 1, 1);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
