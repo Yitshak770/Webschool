@@ -44,6 +44,59 @@ input:not(.submit) {
     height : 40px;
     width : 21.2vw;
 }
+.reset {
+    display: none;
+    position: fixed;
+    top: 22px;
+    left : 700px;
+    padding: 0 30px;
+    height : 100px;
+    background-color: rgb(241, 239, 239);
+    width: 230px;
+}
+.reset button {
+    transition: all 1s linear ;
+    border : none;
+    margin: 30px auto;
+    font-size: 20px;
+}
+.reset button:hover {
+    background-color: rgba(214, 219, 221, 0.562);
+    box-shadow: 1px 1px 10px grey;
+    
+}
+.recherche {
+    position: fixed;
+    top: 150px;
+    left : 700px;
+    background-color: rgb(241, 239, 239);
+    padding: 10px 20px;
+    display: none;
+    
+}   
+.recherche p {
+    font-size: 20px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+.choix label {
+    font-size: 18px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;  
+}
+.check-box {
+    width : 18px;
+    vertical-align:-0.1em;
+    height:1em;
+    line-height:1em;
+}
+.liste {
+    background-color: rgb(241, 239, 239);
+    width : 555px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    display: none;
+}
 .voitures {
     background-color: rgb(192, 233, 252);
     width: 550px;
@@ -51,12 +104,17 @@ input:not(.submit) {
     position: relative;
     font-family:Verdana, Geneva, Tahoma, sans-serif;
     margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px rgb(204, 199, 199);
+    /* display: none; */
 }
 .photo{
     width : 200px;
     position: absolute;
     bottom: 30px;
-    left : 30px
+    left : 30px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px;
 }
 .categ{
     position: absolute;
@@ -92,4 +150,7 @@ input:not(.submit) {
     background-color: rgb(219, 1, 1);
     padding: 5px 10px;
     border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 1px 1px 4px rgb(44, 28, 28);
 }
+

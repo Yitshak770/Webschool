@@ -440,7 +440,11 @@ function essai27() {
 
 // FOREACH
 function essai28() {
+    document.querySelector(".liste").classList.add("visible");
+    document.querySelector(".recherche").classList.add("visible");
+    document.querySelector(".reset").classList.add("visible");
 
+    // CREATION DU HTML POUR LES VOITURES
     const cars = [
         {
             make : "Jaguar",
@@ -476,31 +480,285 @@ function essai28() {
             category : "Economy",
             price : "$20000",
             image : "corsa.jpg"
+        },
+        {
+            make : "Toyota",
+            model : "Aygo",
+            category : "City car",
+            price : "$15000",
+            image : "aygo.jpg"
+        },
+        {
+            make : "Renault",
+            model : "Clio",
+            category : "Subcompact",
+            price : "$18000",
+            image : "clio.jpg"
+        },
+        {
+            make : "BMW",
+            model : "430i",
+            category : "Convertible",
+            price : "$130000",
+            image : "430i.jpg"
+        },
+        {
+            make : "Mercedes",
+            model : "Vision",
+            category : "Minivan",
+            price : "$52000",
+            image : "vision.jpg"
+        },
+        {
+            make : "Mercedes",
+            model : "E350",
+            category : "Sedan",
+            price : "$54000",
+            image : "e350.jpg"
+        },
+        {
+            make : "Roll-Royce",
+            model : "Ghost",
+            category : "Luxury",
+            price : "$180000",
+            image : "ghost.jpg"
+        },
+        {
+            make : "Ford",
+            model : "Mustang",
+            category : "Sport",
+            price : "$45000",
+            image : "mustang.jpg"
+        },
+        {
+            make : "Chevrolet",
+            model : "Corvette",
+            category : "Sport",
+            price : "$48000",
+            image : "corvette.jpg"
+        },
+        {
+            make : "Mercedes",
+            model : "S600",
+            category : "Luxury",
+            price : "$160000",
+            image : "S600.jpg"
+        },
+        {
+            make : "Toyota",
+            model : "Supra",
+            category : "Sport",
+            price : "$75000",
+            image : "supra.jpg"
+        },
+        {
+            make : "Renault",
+            model : "Talisman",
+            category : "Sedan",
+            price : "$60000",
+            image : "talisman.jpg"
+        },
+        {
+            make : "Audi",
+            model : "A5",
+            category : "Convertible",
+            price : "$49000",
+            image : "a5.jpg"
+        },
+        {
+            make : "BMW",
+            model : "X3",
+            category : "SUV",
+            price : "$38000",
+            image : "x3.jpg"
+        },
+        {
+            make : "BMW",
+            model : "IX",
+            category : "Electric",
+            price : "$68000",
+            image : "ix.jpg"
+        },
+        {
+            make : "Audi",
+            model : "Q3",
+            category : "SUV",
+            price : "$48000",
+            image : "q3.jpg"
+        },
+        {
+            make : "Renault",
+            model : "Kadjar",
+            category : "SUV",
+            price : "$24000",
+            image : "kadjar.jpg"
+        },
+        {
+            make : "Lamborghini",
+            model : "Aventador",
+            category : "Sport",
+            price : "$165000",
+            image : "aventador.jpg"
+        },
+        {
+            make : "Peugeot",
+            model : "3008",
+            category : "SUV",
+            price : "$23000",
+            image : "3008.jpg"
+        },
+        {
+            make : "Fiat",
+            model : "500",
+            category : "City car",
+            price : "$15000",
+            image : "500.jpg"
         }
     ]
 
+    
     let listeCars = document.querySelector(".liste");
     
     cars.forEach(createHTML);
     
     function createHTML(car,i) {
-
+        
         listeCars.innerHTML += 
-        `<div class = "voitures" >
-            <div class = "marque">${car.make}</div>
-            <div class = "modele">${car.model}</div> 
-            <div class = "categ">${car.category}</div>  
-            <div class = "price">${car.price}</div>
-            <img class = "photo" src="./assets/${car.image}" alt=""> 
-            <div class="fermeture">X</div>  
+        `<div class = "voitures" id = "v${i}" >
+        <div class = "marque">${car.make}</div>
+        <div class = "modele">${car.model}</div> 
+        <div class = "categ">${car.category}</div>  
+        <div class = "price">${car.price}</div>
+        <img class = "photo" src="./assets/${car.image}" alt=""> 
+        <div onclick="close()" class="fermeture" id = "f${i}">X</div>  
         </div>`;
+        
     }
 
+    // CREATION DU HTML POUR LES CATEGORIES
+
+    const CATEG = [
+        {
+            nameC : "sport",
+            texteC: "Sport"
+        },
+        {
+            nameC : "luxury",
+            texteC: "Luxury"
+        },
+        {
+            nameC : "suv",
+            texteC: "SUV"
+        },
+        {
+            nameC : "electric",
+            texteC: "Electric"
+        },
+        {
+            nameC : "economy",
+            texteC: "Economy"
+        },
+        {
+            nameC : "city-car",
+            texteC: "City car"
+        },
+        {
+            nameC : "subcompact",
+            texteC: "Subcompact"
+        },
+        {
+            nameC : "convertible",
+            texteC: "Convertible"
+        },
+        {
+            nameC : "minivan",
+            texteC: "Minivan"
+        },
+        {
+            nameC : "sedan",
+            texteC: "Sedan"
+        }
+    ]
+
+    let listeCateg = document.querySelector(".categories");
+    
+    CATEG.forEach(CreateHTML);
+    
+    function CreateHTML(categ,i) {
+        
+        listeCateg.innerHTML += 
+        `<div class="choix">
+            <input type="checkbox" name="${categ.nameC}" id="${categ.nameC}" class= "check-box">
+            <label for="${categ.nameC}">${categ.texteC}</label>
+        </div>`
+    }
+
+    // EFFACER LES CARTES EN CLIQUANT SUR LE X
+    
+    let resId = "";
+    let btn = document.querySelectorAll(".fermeture");
+    btn.forEach(button);
+        function button(btn,i) {
+        btn.addEventListener("click", detect);
+        btn.addEventListener("click", close);
+        function detect(e) {      
+                resId = parseInt(`${e.target.id}`.slice(1));
+            }
+        function close() {
+                document.querySelector("#v"+resId).style.display = "none" ; 
+            }
+    };   
+
+
+    // RESET
+
+    let resetButton = document.querySelector(".reset button");
+    resetButton.addEventListener("click", reset);
+    let cartes = document.querySelectorAll(".voitures");
+    function reset() {
+        for (let i = 0; i < cartes.length; i++) {
+            cartes[i].style.display = "block" ;    
+        };
+    }
+     
+    // TRI EN COCHANT LES CHECKBOX
+
+
+
+    let checkSport = document.querySelector("#sport");
+    
+    checkSport.addEventListener("click", afficheSport);
+    
+    function afficheSport() {
+        if (checkSport.checked == true) {
+            for (let i = 0; i < cartes.length; i++) {
+                cartes[i].style.display = "none" ; 
+
+                
+                let carSport = document.querySelector("#categ");
+                console.log(carSport);
+                // cartes[i].style.display = "block!important";
+
+
+
+            };
+            
+                
+                
+                
+            
+            
+        }
+        
+    }
+
+  
 }
-
-
-
-
+    
+    
+    
+    
+    
 
 // FORM
 function essai29() {
@@ -537,3 +795,8 @@ function check() {
     }
 
     }
+
+    // ESSAIS
+function essai30() {
+    document.querySelector(".voitures").style.display = "none" ;
+}
