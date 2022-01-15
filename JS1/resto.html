@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/new-reset.css">
+    <link rel="stylesheet" href="css/commun.css">
+    <link rel="stylesheet" href="css/resto.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <nav>
+        <div id="menu-page-resto">
+            <a href="index.html" class = nav-1>MENU PRINCIPAL</a>
+        </div>
+    </nav>
+
+    <div class="line">
+    </div>
+
+    <main>
+        <form id = "falafel" action="" >
+            <p>Choisissez votre falafel</p>
+            <input type="text" class = "myinput name" name="" placeholder="Name">
+            <!-- <input type="text" class = "myinput" name="" placeholder="Surname"> -->
+            <div class="select-container">
+                <select name="" id="select-bread">
+                    <option value="">Choose your bread</option>
+                    <option value="pita">Pita</option>
+                    <option value="lafa">Lafa</option>
+                    <option value="baguette">Baguette</option>
+                </select>
+            </div>
+            <div class="select-container">
+                <select name="" id="select-balls">
+                    <option value="">How many balls</option>
+                    <option value="3">3</option>
+                    <option value="6">6</option>
+                    <option value="9">9</option>
+                    <option value="12">12</option>
+                    <option value="15">15</option>
+                </select>
+            </div>
+            
+            <div class="container-checkbox">
+                <label for="Hummus" class="choix">Hummus
+                    <input type="checkbox" value="Hummus" name="extra" id="Hummus" class= "check-box">
+                    <span class = checkmark></span>
+                </label>
+                <label for="Salad" class="choix">Salad
+                    <input type="checkbox" value="Salad" name="extra" id="Salad" class= "check-box">
+                    <span class = checkmark></span>
+                </label>
+                <label for="Onions" class="choix">Onions
+                    <input type="checkbox" value="Onions" name="extra" id="Onions" class= "check-box">
+                    <span class = checkmark></span>
+                </label>
+                <label for="Eggplant" class="choix">Eggplant
+                    <input type="checkbox" value="Eggplant" name="extra" id="Eggplant" class= "check-box">
+                    <span class = checkmark></span>
+                </label>
+                <label for="Chilli" class="choix">Chilli
+                    <input type="checkbox" value="Chilli" name="extra" id="Chilli" class= "check-box">
+                    <span class = checkmark></span>
+                </label>
+                <label for="Cucumber" class="choix">Cucumber
+                    <input type="checkbox" value="Cucumber" name="extra" id="Cucumber" class= "check-box">
+                    <span class = checkmark></span>
+                </label>
+            </div>
+            
+            <!-- <input type="text" class = "myinput" name="" placeholder="price"> -->
+            <input type="submit" id = "submit-falafel" class = "myinput submit" value="Place order">
+        </form>
+        
+        <div id = "result" class="invisible">    
+        </div>
+
+    </main>
+
+    <script src="script/resto.js"></script>
+        
+</body>
+</html>

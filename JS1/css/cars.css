@@ -1,0 +1,267 @@
+.my-button {
+    position: fixed;
+    padding: 0 30px;
+    height : 100px;
+    background-color: rgb(241, 239, 239);
+    width: 280px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left : 610px;
+}
+.del-by-plate {
+    top: 200px;
+    
+}
+.reset {
+    /* display: none; */
+    top: 90px;
+    
+}
+.my-button button {
+    transition: all 0.5s linear ;
+    border : none;
+    margin: 30px auto;
+    font-size: 20px;
+    padding: 10px 20px;
+    text-align: center;
+    cursor: pointer;
+}
+.my-button button:hover {
+    background-color: rgba(214, 219, 221, 0.562);
+    box-shadow: 1px 1px 10px grey;
+    
+}
+/**************** design du module de recherche par checkbox ***************/
+#cat-cont {
+    position: fixed;
+    top: 310px;
+    left : 610px;
+    width : 280px;
+    background-color: rgb(241, 239, 239);
+    padding: 10px 20px;
+    /* display: none; */
+    
+}   
+#cat-cont p {
+    font-size: 20px;
+    padding-bottom: 20px;
+}
+.choice-search {
+    margin-bottom: 5px;
+    flex-wrap: nowrap;
+    flex-basis: 50%;
+    
+}
+.choice-search label {
+    padding-left: 5px!important;
+} 
+/*************  design des checkbox - début  **************/
+
+.container-checkbox, #cat-cont {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 25px 9px 10px 8px;
+}
+.right-container {
+    padding: 1px;  
+}
+.left-container {
+    padding: 1px;
+}
+.choice label {
+    font-size: 15px;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;  
+    color : rgb(90, 90, 90);
+    padding-left: 1px;
+    padding-right: 20px;
+    cursor: pointer;
+}
+.check-box {
+    width : 12px;
+    height: 12px;
+    border-radius: 20%;
+    cursor: pointer;
+}
+.check-box:hover {
+    box-shadow: 0px 1px 2px 0px grey;
+}
+/*checked*/
+.check-box:checked {
+    background: rgb(182, 228, 250);
+    margin:0px;
+    position: relative;
+}
+.check-box:checked:before {
+    /* font-family: FontAwesome; */
+    /* content: '\f00c'; */
+    /* font-size: 13px; */
+    display: block;
+    color: grey;
+    position: absolute;
+    }
+/*************  design des checkbox - fin  **************/
+
+#main {
+    background-color: rgb(241, 239, 239);
+    width : 590px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    /* display: none; */
+    margin-top: 90px;
+}
+.eachCar {
+    background-color: rgb(192, 233, 252);
+    width: 550px;
+    height:250px;
+    position: relative;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 10px rgb(204, 199, 199);
+    /* display: none; */
+}
+.image{
+    width : 200px;
+    position: absolute;
+    bottom: 30px;
+    left : 30px;
+    border-radius: 5px;
+    box-shadow: 1px 1px 4px;
+}
+.category{
+    position: absolute;
+    top : 15px;
+    font-size: 30px;
+    font-weight: 700;
+    left: 30px;
+}
+.make{
+    position: absolute;
+    top : 75px;
+    font-size: 30px;
+    left: 300px;
+}
+.model{
+    position: absolute;
+    top : 130px;
+    font-size: 20px;
+    left: 300px;
+}
+.price{
+    position: absolute;
+    top : 175px;
+    font-size: 20px;
+    left: 300px;
+}
+.btn{
+    position: absolute;
+    top : 30px;
+    font-size: 18px;
+    right: 35px;
+    color: white;
+    background-color: rgb(219, 1, 1);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 1px 1px 4px rgb(44, 28, 28);
+}
+
+/******************  formulaire pour ajouter des voitures *****************/
+.adding {
+    position: fixed;
+    background-color: rgb(241, 239, 239);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    top: 90px;
+    left : 910px;
+    width: 260px;
+    height : 500px;
+}
+.adding p {
+    font-size : 20px;
+}
+.adding input, .choice input{                  
+    background-color: rgba(228, 228, 228, 0.973);
+    font-size: 16px;
+    border: 1px solid grey;
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    color : rgb(90, 90, 90);
+}
+.adding input:not([type="checkbox"]){                  /* pour exclure les checkbox*/
+    margin-top: 18px;
+    height : 40px;
+    width: 235px;
+    padding: 10px;
+}
+/*************  design des menus déroulant - début  **************/
+
+.select-container {
+    position: relative;
+    background-color: rgba(228, 228, 228, 0.973);
+	border: #777 1px solid;
+	overflow: hidden; 
+	margin: 16px 0 0 0 ;
+	border-radius: 0;
+    outline :0;
+    cursor: pointer;
+    width : 91%;
+    height : 40px;
+}
+#select-make {
+    appearance: none;
+    outline: 0;
+    border: 0 !important;
+    box-shadow: none;
+    font-size: 1.1em;
+    width : 100%; 
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 16px;
+    color: grey;
+    padding: 10px;
+}
+.select-container::after { 
+	/* Le pointeur du select */
+	content: '';
+	position: absolute;
+	top: 50%; 
+	margin-top: -3px;
+	right: .75em;  
+	display: block; 
+	width: 0; height: 0;
+	border-color: transparent;
+	border-top-color: #444; 
+	border-width: 6px;
+	border-style: solid;
+	pointer-events: none;
+}
+/*************  design des menus déroulant - fin  **************/
+#submit-adding-car {
+    color :grey;
+    cursor: pointer;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+#submit-adding-car:hover {
+    background-color: rgb(201, 201, 201);
+}
+
+.plate {
+    border: 1px solid black;
+    border-radius: 50%;
+    width : 30px;
+    height : 30px;
+    text-align: center;
+    padding-top: 4px;
+    position: absolute;
+    right : 40px;
+    bottom: 30px;
+    background-color: rgb(182, 228, 250);
+}
+
+

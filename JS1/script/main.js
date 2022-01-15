@@ -440,12 +440,13 @@ function essai27() {
 
 // FOREACH
 function essai28() {
-    document.querySelector(".liste").classList.add("visible");
+    document.querySelector("#main").classList.add("visible");
     document.querySelector(".recherche").classList.add("visible");
     document.querySelector(".reset").classList.add("visible");
 
     // CREATION DU HTML POUR LES VOITURES
-    const cars = [
+    
+    const Cars = [
         {
             make : "Jaguar",
             model : "XJ50",
@@ -459,184 +460,98 @@ function essai28() {
             category : "Sport",
             price : "$150000",
             image : "ferrari.jpg"
-        },
-        {
-            make : "Toyota",
-            model : "Rav4",
-            category : "SUV",
-            price : "$40000",
-            image : "rav4.jpg"
-        },
-        {
-            make : "Tesla",
-            model : "Model X",
-            category : "Electric",
-            price : "$60000",
-            image : "tesla.jpg"
-        },
-        {
-            make : "Opel",
-            model : "Corsa",
-            category : "Economy",
-            price : "$20000",
-            image : "corsa.jpg"
-        },
-        {
-            make : "Toyota",
-            model : "Aygo",
-            category : "City car",
-            price : "$15000",
-            image : "aygo.jpg"
-        },
-        {
-            make : "Renault",
-            model : "Clio",
-            category : "Subcompact",
-            price : "$18000",
-            image : "clio.jpg"
-        },
-        {
-            make : "BMW",
-            model : "430i",
-            category : "Convertible",
-            price : "$130000",
-            image : "430i.jpg"
-        },
-        {
-            make : "Mercedes",
-            model : "Vision",
-            category : "Minivan",
-            price : "$52000",
-            image : "vision.jpg"
-        },
-        {
-            make : "Mercedes",
-            model : "E350",
-            category : "Sedan",
-            price : "$54000",
-            image : "e350.jpg"
-        },
-        {
-            make : "Roll-Royce",
-            model : "Ghost",
-            category : "Luxury",
-            price : "$180000",
-            image : "ghost.jpg"
-        },
-        {
-            make : "Ford",
-            model : "Mustang",
-            category : "Sport",
-            price : "$45000",
-            image : "mustang.jpg"
-        },
-        {
-            make : "Chevrolet",
-            model : "Corvette",
-            category : "Sport",
-            price : "$48000",
-            image : "corvette.jpg"
-        },
-        {
-            make : "Mercedes",
-            model : "S600",
-            category : "Luxury",
-            price : "$160000",
-            image : "S600.jpg"
-        },
-        {
-            make : "Toyota",
-            model : "Supra",
-            category : "Sport",
-            price : "$75000",
-            image : "supra.jpg"
-        },
-        {
-            make : "Renault",
-            model : "Talisman",
-            category : "Sedan",
-            price : "$60000",
-            image : "talisman.jpg"
-        },
-        {
-            make : "Audi",
-            model : "A5",
-            category : "Convertible",
-            price : "$49000",
-            image : "a5.jpg"
-        },
-        {
-            make : "BMW",
-            model : "X3",
-            category : "SUV",
-            price : "$38000",
-            image : "x3.jpg"
-        },
-        {
-            make : "BMW",
-            model : "IX",
-            category : "Electric",
-            price : "$68000",
-            image : "ix.jpg"
-        },
-        {
-            make : "Audi",
-            model : "Q3",
-            category : "SUV",
-            price : "$48000",
-            image : "q3.jpg"
-        },
-        {
-            make : "Renault",
-            model : "Kadjar",
-            category : "SUV",
-            price : "$24000",
-            image : "kadjar.jpg"
-        },
-        {
-            make : "Lamborghini",
-            model : "Aventador",
-            category : "Sport",
-            price : "$165000",
-            image : "aventador.jpg"
-        },
-        {
-            make : "Peugeot",
-            model : "3008",
-            category : "SUV",
-            price : "$23000",
-            image : "3008.jpg"
-        },
-        {
-            make : "Fiat",
-            model : "500",
-            category : "City car",
-            price : "$15000",
-            image : "500.jpg"
         }
     ]
 
     
-    let listeCars = document.querySelector(".liste");
+    var mainDiv = document.getElementById("main");
+    var toAppend = "";
+
+    Cars.forEach(addCars);
+    mainDiv.innerHTML = toAppend;
+
+    // function addCars(car, i) {
+    //     toAppend += 
+    //     `<div id = "car${i}" class = "eachCar">
+    //     <h3 class = "category" > ${car.category} </h3>
+    //     <button class = "btn btn-danger button" onclick = "deleteCar(this)"> X </button>
+    //     <img class = "image" src="./assets/${car.image}">
+    //     <p class = "make">${car.make}</p>
+    //     <p class = "model" >${car.model}</p>
+    //     <p class = "price">${car.price}</p>
+    //     </div>`;
+    // }
+
+    // function deleteCar(btn) {
+    //     btn.parentElement.remove();
+    // }
+
+    // NOUVEL ESSAI DEBUT
+
+    function addCars(car, i) {
+            toAppend += 
+            `<div id = "car${i}" class = "eachCar">
+            <h3 class = "category" > ${car.category} </h3>
+            <button class = "btn btn-danger button" onclick = "deleteCar(this)"> X </button>
+            <img class = "image" src="./assets/${car.image}">
+            <p class = "make">${car.make}</p>
+            <p class = "model" >${car.model}</p>
+            <p class = "price">${car.price}</p>
+            </div>`;
+        }
     
-    cars.forEach(createHTML);
+        function deleteCar(btn) {
+            // document.getElementById("car" + car).remove();
+            btn.parentElement.remove();
+        }
+
+    // NOUVEL ESSAI FIN
+
+
+    // let listeCars = document.querySelector(".liste");
     
-    function createHTML(car,i) {
+    // cars.forEach(createHTML);
+    
+    // function createHTML(car,i) {
         
-        listeCars.innerHTML += 
-        `<div class = "voitures" id = "v${i}" >
-        <div class = "marque">${car.make}</div>
-        <div class = "modele">${car.model}</div> 
-        <div class = "categ">${car.category}</div>  
-        <div class = "price">${car.price}</div>
-        <img class = "photo" src="./assets/${car.image}" alt=""> 
-        <div onclick="close()" class="fermeture" id = "f${i}">X</div>  
-        </div>`;
+    //     listeCars.innerHTML += 
+    //     `<div class = "voitures" id = "car${i}" >
+    //     <div class = "marque">${car.make}</div>
+    //     <div class = "modele">${car.model}</div> 
+    //     <div class = "categ">${car.category}</div>  
+    //     <div class = "price">${car.price}</div>
+    //     <img class = "photo" src="./assets/${car.image}" alt=""> 
+    //     <div onclick="close(this)" class="fermeture btn">X</div>  
+    //     </div>`;
         
-    }
+    //     // EFFACER LES CARTES EN CLIQUANT SUR LE X
+        
+    // }
+    // function close(btn) {
+    // btn.parentElement.style.display = "none" ; 
+    // }
+};   
+    
+    
+    
+    // let resId = "";
+    // let btn = document.querySelectorAll(".fermeture");
+    // btn.forEach(button);
+    //     function button(btn,i) {
+    //     btn.addEventListener("click", detect);
+    //     btn.addEventListener("click", close);
+    //     function detect(e) {      
+    //             resId = parseInt(`${e.target.id}`.slice(1));
+    //         }
+    //     function close() {
+    //             document.querySelector("#v"+resId).style.display = "none" ; 
+    //         }
+    // };   
+
+
 
     // CREATION DU HTML POUR LES CATEGORIES
-
+    
     const CATEG = [
         {
             nameC : "sport",
@@ -693,21 +608,7 @@ function essai28() {
         </div>`
     }
 
-    // EFFACER LES CARTES EN CLIQUANT SUR LE X
-    
-    let resId = "";
-    let btn = document.querySelectorAll(".fermeture");
-    btn.forEach(button);
-        function button(btn,i) {
-        btn.addEventListener("click", detect);
-        btn.addEventListener("click", close);
-        function detect(e) {      
-                resId = parseInt(`${e.target.id}`.slice(1));
-            }
-        function close() {
-                document.querySelector("#v"+resId).style.display = "none" ; 
-            }
-    };   
+
 
 
     // RESET
@@ -753,7 +654,7 @@ function essai28() {
     }
 
   
-}
+
     
     
     
@@ -800,3 +701,4 @@ function check() {
 function essai30() {
     document.querySelector(".voitures").style.display = "none" ;
 }
+
