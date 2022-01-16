@@ -1,3 +1,4 @@
+/*********************** style des boutons *************************/
 .my-button {
     position: fixed;
     padding: 0 30px;
@@ -8,15 +9,6 @@
     justify-content: center;
     align-items: center;
     left : 610px;
-}
-.del-by-plate {
-    top: 200px;
-    
-}
-.reset {
-    /* display: none; */
-    top: 90px;
-    
 }
 .my-button button {
     transition: all 0.5s linear ;
@@ -31,6 +23,18 @@
     background-color: rgba(214, 219, 221, 0.562);
     box-shadow: 1px 1px 10px grey;
     
+}
+/*********************** différents boutons *************************/
+.del-by-plate {
+    top: 200px;
+    
+}
+.reset {
+    /* display: none; */
+    top: 90px; 
+}
+.add-a-car {
+    top: 520px;
 }
 /**************** design du module de recherche par checkbox ***************/
 #cat-cont {
@@ -102,6 +106,10 @@
     }
 /*************  design des checkbox - fin  **************/
 
+
+/*********************** design des cartes de voiture début **************************/
+
+/************* container **************/
 #main {
     background-color: rgb(241, 239, 239);
     width : 590px;
@@ -112,6 +120,7 @@
     /* display: none; */
     margin-top: 90px;
 }
+/************* cartes **************/
 .eachCar {
     background-color: rgb(192, 233, 252);
     width: 550px;
@@ -156,6 +165,19 @@
     font-size: 20px;
     left: 300px;
 }
+.plate {
+    border: 1px solid black;
+    border-radius: 50%;
+    width : 30px;
+    height : 30px;
+    text-align: center;
+    padding-top: 4px;
+    position: absolute;
+    right : 40px;
+    bottom: 30px;
+    background-color: rgb(182, 228, 250);
+}
+/************** bouton rouge pour supprimer des voitures ****************/
 .btn{
     position: absolute;
     top : 30px;
@@ -169,7 +191,10 @@
     box-shadow: 1px 1px 4px rgb(44, 28, 28);
 }
 
-/******************  formulaire pour ajouter des voitures *****************/
+/*********************** design des cartes de voiture fin **************************/
+
+
+/**********************  formulaire pour ajouter des voitures **********************/
 .adding {
     position: fixed;
     background-color: rgb(241, 239, 239);
@@ -240,6 +265,8 @@
 	pointer-events: none;
 }
 /*************  design des menus déroulant - fin  **************/
+
+/*********** bouton submit *************/
 #submit-adding-car {
     color :grey;
     cursor: pointer;
@@ -250,18 +277,10 @@
 #submit-adding-car:hover {
     background-color: rgb(201, 201, 201);
 }
-
-.plate {
-    border: 1px solid black;
-    border-radius: 50%;
-    width : 30px;
-    height : 30px;
-    text-align: center;
-    padding-top: 4px;
-    position: absolute;
-    right : 40px;
-    bottom: 30px;
-    background-color: rgb(182, 228, 250);
+.error {
+    color : red;
+    margin-top: 15px;
 }
+
 
 

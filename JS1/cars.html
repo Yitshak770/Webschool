@@ -33,9 +33,11 @@
     
     <div id="cat-cont">
         <p>Choisissez les catégories</p>
-        <!-- <div class="categories"> -->
         </div>
     </div> 
+    <div class="add-a-car my-button">
+        <button onclick="addNewCar(prompt('Enter car number'))"> Add a car </button>
+    </div>
     
 <!----------------------- Formulaire d'ajout de véhicule DEBUT----------------------------->
 
@@ -95,51 +97,52 @@
         <div class="container-checkbox">
             <div class="left-container">
                 <div class="choice">
-                    <input type="checkbox" name="Electric" id="Electric" class= "check-box">
-                    <label for="Electric">Electric</label>
+                    <input type="checkbox" name="Electric" value="Electric" id="Electric2" class= "check-box add-car">
+                    <label for="Electric2">Electric</label>
                 </div>
                 <div class="choice">
-                    <input type="checkbox" name="Economy" id="Economy" class= "check-box">
-                    <label for="Economy">Economy</label>
+                    <input type="checkbox" name="Economy" value="Economy" id="Economy2" class= "check-box add-car">
+                    <label for="Economy2">Economy</label>
                 </div>
                 <div class="choice">
-                    <input type="checkbox" name="Minivan" id="Minivan" class= "check-box">
-                    <label for="Minivan">Minivan</label>
+                    <input type="checkbox" name="Minivan" value="Minivan" id="Minivan2" class= "check-box add-car">
+                    <label for="Minivan2">Minivan</label>
                 </div>
                 <div class="choice">
-                    <input type="checkbox" name="Subcompact" id="Subcompact" class= "check-box">
-                    <label for="Subcompact">Subcompact</label>
+                    <input type="checkbox" name="Subcompact" value="Subcompact" id="Subcompact2" class= "check-box add-car">
+                    <label for="Subcompact2">Subcompact</label>
                 </div>
                 <div class="choice">
-                    <input type="checkbox" name="Convertible" id="Convertible" class= "check-box">
-                    <label for="Convertible">Convertible</label>
+                    <input type="checkbox" name="Convertible" value="Convertible" id="Convertible2" class= "check-box add-car">
+                    <label for="Convertible2">Convertible</label>
                 </div>
             </div>
             <div class="right-container">
                 <div class="choice">
-                    <input type="checkbox" name="Luxury" id="Luxury" class= "check-box">
-                    <label for="Luxury">Luxury</label>
+                    <input type="checkbox" name="Luxury" value="Luxury" id="Luxury2" class= "check-box add-car">
+                    <label for="Luxury2">Luxury</label>
                 </div>
                 <div class="choice">
-                    <input type="checkbox" name="Sport" id="Sport" class= "check-box">
-                    <label for="Sport">Sport</label>
+                    <input type="checkbox" name="Sport" value="Sport" id="Sport2" class= "check-box add-car">
+                    <label for="Sport2">Sport</label>
                 </div>
                 <div class="choice">
-                    <input type="checkbox" name="City-car" id="City-car" class= "check-box">
-                    <label for="City-car">City car</label>
+                    <input type="checkbox" name="City-car" value="City-car" id="City-car2" class= "check-box add-car">
+                    <label for="City-car2">City car</label>
                 </div>
                 <div class="choice">
-                    <input type="checkbox" name="Sedan" id="Sedan" class= "check-box">
-                    <label for="Sedan">Sedan</label>
+                    <input type="checkbox" name="Sedan" value="Sedan" id="Sedan2" class= "check-box add-car">
+                    <label for="Sedan2">Sedan</label>
                 </div>
                 <div class="choice">
-                    <input type="checkbox" name="SUV" id="SUV" class= "check-box">
-                    <label for="SUV">SUV</label>
+                    <input type="checkbox" name="SUV" value="SUV" id="SUV2" class= "check-box add-car">
+                    <label for="SUV2">SUV</label>
                 </div>
             </div>
         </div>     
         <input type="text" name="" class="Price" value="$" placeholder="price">
         <input type="submit" id = "submit-adding-car" class = "submit" value="Submit">
+        <div class="error"></div>
     </form>
     
 <!----------------------- Formulaire d'ajout de véhicule FIN----------------------------->

@@ -234,60 +234,21 @@ function deleteCarBtn(plate) {
 
 
 
-/******************************* ajoute une nouvelle voiture en remplissant le formulaire ***********************************/
+/******************************* ajoute une nouvelle voiture en cliquant sur le bouton ***********************************/
 
-let myForm = document.querySelector(".adding");
 
-myForm.addEventListener("submit",addNewCar);
-
-function addNewCar() {                                 //ajoute une voiture au array 
-    let plate = document.querySelector(".Plate");
-    let make = document.querySelector("#select-make");
-    let model = document.querySelector(".Model");
-    let price = document.querySelector(".Price");
-    
-    /***********************  récupère le tableau des catégories et affiche les 2 premières *************************************/   
-    
-    let boxes = myForm.querySelectorAll(".add-car:checked");
-    let myCategory = [];
-    boxes.forEach(function(x){
-        myCategory.push(x.value);
-    });
-    if (myCategory.length > 2) {
-        myCategory = myCategory.slice( 0 , 2 );
-    };
-    
-    
-    
-    /*********  vréifie que le numéro de plaque n'est pas déjà pris et si c'est le cas bloque le programme et affiche un message d'erreur  **********/
-    let Plate = plate.value;
-    Plate = Plate.replaceAll( "-", "" );  //supprime les acrractères problématiques
-    
-    
-        let allPlatesArr = [];                              
-        let allplates = document.querySelectorAll(".plate");
-        allplates.forEach(function(x) {
-            allPlatesArr.push(x.textContent);
-        });
-    if (allPlatesArr.includes(Plate)) {
-        let errorMessage = document.querySelector(".error");
-        errorMessage.innerHTML = "Your have a wrong plate number";
-    }
-    else {
-        var obj = new Car(Plate, myCategory, make.value, model.value, price.value, "e350.jpg")   
-        // errorMessage.innerHTML = "";
-        }
-    
+function addNewCar(plate) {                                 //ajoute une voiture au array 
+    plate = plate.replaceAll( "-", "" );
+    var obj = new Car(plate, ["Sedan"], "Mercedes", "E350", "$54000", "e350.jpg")
     Cars.push(obj);
     createNewCarHTML(obj)
-    
+    console.log(Cars);
 };
 
 function createNewCarHTML(car) {                            //envoie ce nouvel élément du array vers le HTML
     var div = document.createElement("div");
     div.className = `eachCar cat-${car.category.join(" cat-")} newCar"`
     div.id = `car${car.plate}`;
-    //creer le html avec la nouvelle méthode
     var restHTML = 
     `<h3 class = "category" > ${car.category.join(", ")} </h3>
     <button class = "btn dlt btn-danger button" onclick = "deleteCar(this, '${car.plate}')"> X </button>
@@ -316,14 +277,33 @@ class Car {
 
 /******************************* ajoute une nouvelle voiture en remplissant le formulaire *********************************/
 
-     
+// let myForm = document.querySelector(".adding");
+// myForm.addEventListener("submit", function addNewCar() {
+//         let plate = document.querySelector(".Plate");
+//         let make = document.querySelector("#select-make");
+//         let model = document.querySelector(".Model");
+//         let category = document.querySelector("#select-categ");
+//         let price = document.querySelector(".Price");
+//         var obj = {
+//                 plate : plate.value,
+//                 make : make.value,
+//                 model : model.value,
+//                 category : category.value,
+//                 price : price.value,
+//                 image : "xj50.jpg"
+//             }
+//             Cars.push(obj);
+//             createNewCarHTML(obj);
+        
+//         });
+        
         
 /******************************* réinitialise la liste *********************************/
 
 var catCont2 = document.getElementById("cat-cont");
-// console.log (catCont2); // correct
+console.log (catCont2); // correct
 var inputs2 = catCont2.querySelectorAll("input[type=checkbox]:checked");
-// console.log(inputs2); // pas correct
+console.log(inputs2); // pas correct
 var checkedArr2 = [];
 inputs2.forEach(function(x){
     checkedArr2.push(x.value);
