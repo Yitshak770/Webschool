@@ -25,23 +25,29 @@
     </div>
     
     <div class="reset my-button" id="myResetButton">
-        <button onclick="createHTML()">Reset the list</button>
+        <button>Reset the list</button>
     </div>
     <div class="del-by-plate my-button">
         <button onclick="deleteCarBtn(prompt('Enter car number'))"> Delete a car </button>
     </div>
     
     <div id="cat-cont">
+        <div class = "cat-button">
+            <input type = "radio" name = "cat-button" class = "cat-radio" id ="inclusive-search-button" value ="inclusive-search-button" >
+            <label for="inclusive-search-button">Inclusive search</label>
+        </div>
+        <div class = "cat-button">
+            <input type = "radio" name = "cat-button" class = "cat-radio" id ="exclusive-search-button" value ="exclusive-search-button" checked>
+            <label for="exclusive-search-button">Exclusive search</label>
+        </div>
         <p>Choisissez les catégories</p>
         </div>
     </div> 
-    <div class="add-a-car my-button">
-        <button onclick="addNewCar(prompt('Enter car number'))"> Add a car </button>
-    </div>
+    
     
 <!----------------------- Formulaire d'ajout de véhicule DEBUT----------------------------->
 
-    <form class = "adding" action="#" >
+    <div class = "adding"  >
         <p>Add a car</p>
         <input type="text" name="" class="Plate" placeholder="plate">
         <div class="select-container">
@@ -143,7 +149,7 @@
         <input type="text" name="" class="Price" value="$" placeholder="price">
         <input type="submit" id = "submit-adding-car" class = "submit" value="Submit">
         <div class="error"></div>
-    </form>
+    </div>
     
 <!----------------------- Formulaire d'ajout de véhicule FIN----------------------------->
     

@@ -28,20 +28,22 @@ function falafelResto(bread, qtyBall, extras) {       // paramètres
 
 
 // -------------- début du programme --------------------//
-let myForm = document.querySelector("#falafel");
+let mySubmit = document.querySelector(".submit");
 let result = document.querySelector("#result");
 let fieldValues =[];
 let checkValues =[];
 let message = "";
-myForm.addEventListener("submit", function send() {
+mySubmit.addEventListener("click", function send() {
 
     let fields = document.querySelectorAll('input:not([type="checkbox"]):not([type="submit"]), select');
     let checkboxs = document.querySelectorAll('input[type="checkbox"]');
     
+    fieldValues =[];
     fields.forEach(function (x) {
         fieldValues.push(x.value);
     });
 
+    checkValues = [];
     checkboxs.forEach(function (x) {
         if (x.checked) {
         checkValues.push(x.value);  
@@ -50,18 +52,16 @@ myForm.addEventListener("submit", function send() {
        
     let myExtras = checkValues.join(" + ");
 
-    message = `Hello ${fieldValues[0]} here is your felafel : \n ${fieldValues[1]} with ${fieldValues[2]} balls + ${myExtras}`;
-    console.log(message);
-    console.log("tata");
-    return message;
+    message = `Hello ${fieldValues[0]} here is your falafel : \n ${fieldValues[1]} with ${fieldValues[2]} balls + ${myExtras}`;
+    result.style.display = "block" ; 
+    result.innerHTML = message;     
+    
 });
 
-console.log(message);
-console.log("toto");
 
 
-// result.style.display = "block" ; 
-// result.innerHTML = message;     
+
+
 
 
 

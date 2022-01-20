@@ -10,6 +10,7 @@
     
 var Cars = []
 var mainDiv = document.getElementById("main");
+var catCont = document.getElementById("cat-cont");
 
 function createHTMLCategories () {
     
@@ -17,7 +18,6 @@ function createHTMLCategories () {
     const Categories = [
         "Electric" , "Luxury" , "Economy" , "Sport" , "Minivan" , "City-car" , "Subcompact" , "Sedan" , "Convertible" , "SUV"
     ];
-    var catCont = document.getElementById("cat-cont");
     
     Categories.forEach(function(cat) {
         
@@ -26,7 +26,7 @@ function createHTMLCategories () {
         catCont.appendChild(div);
         
         var check = document.createElement("input");
-        check.className = "check-box";                  
+        check.className = "check-box check-search";                  
         check.type = "checkbox";
         check.id = cat;
         check.name = cat;
@@ -39,84 +39,16 @@ function createHTMLCategories () {
         label.innerHTML += cat;
         div.appendChild(label);
         
-        check.addEventListener("change", searchCategory2);
+        // check.addEventListener("change", searchCategory2);
     });
-    
-    /******************************* sélection des voitures selon les catégories - choix inclusif **********************************/
-    
-    function searchCategory1() {
-        var allCars = document.querySelectorAll(".eachCar");
-        allCars.forEach(function(x) {
-            x.style.display = "none";
-        });
-        var inputs = catCont.querySelectorAll("input[type=checkbox]:checked");
-        var checkedArr = [];
-        inputs.forEach(function(x){
-            checkedArr.push(x.value);
-        });
-        /* affiche toutes les voitures si rien n'est coché */
-        if (checkedArr.length == 0) {
-            allCars.forEach(function(x) {
-                x.style.display = "block";
-            })
-        }
-        /* affiche les voitures des catégories cochées*/
-        checkedArr.forEach(function(nameOfChooseCat) {
-            // récupérer toutes les div (cartes) avec la catégorie actuelle
-            var catDivsAll = document.querySelectorAll(".cat-" + nameOfChooseCat);
-            console.log(catDivsAll);
-           // et les passer en display none
-            catDivsAll.forEach(function(y) {
-                y.style.display = "block";
-            });
-           // retourne dans la boucle avec la catégorie suivante
-        });
-        
-    };
-
-    /******************************* sélection des voitures selon les catégories - choix exclusif **********************************/
-    
-    function searchCategory2() {
-        var allCars = document.querySelectorAll(".eachCar");
-        allCars.forEach(function(x) {
-            x.style.display = "none";
-        });
-        var inputs = catCont.querySelectorAll("input[type=checkbox]:checked");
-        var checkedArr = [];
-        inputs.forEach(function(x){
-            checkedArr.push(x.value);
-        });
-        /* affiche toutes les voitures si rien n'est coché */
-        if (checkedArr.length == 0) {
-            allCars.forEach(function(x) {
-                x.style.display = "block";
-            })
-        }
-        
-        for (let i = 0; i < allCars.length; i++) {          // fait passer toutes les voitures pour vérifier si elle contiennent la catégorie cochée
-            var display = true;                             // par défaut on consière que ces catégories sont bien présentes dans cette fiche voiture (div)
-            const car = allCars[i];
-            var allCats = car.className;
-            for (let j = 0; j < checkedArr.length; j++) {  // on va faire passer toutes les catégories cochées dans la boucle afin de vérifier si elle sont présente dans cette carte
-                const cat = checkedArr[j];                  
-                if (allCats.includes(cat) == false) {       // si une catégorie cochée n'est pas présente la boucle s'arrete (break)
-                    display = false;
-                    break;   
-                }
-            }
-            if (display) {                                  // si toutes les catégories cochées sont présentes alors la carte s'affiche (display reste true)
-                car.style.display ="block"
-            }
-        }
-           // retourne dans la boucle (le 2ème for) avec la catégorie suivante
-    };  // retourne dans la boucle (le premier for) avec la voiture suivante
-        
-    
 }
-createHTMLCategories ()   
+createHTMLCategories ()  
 
 
-    /*********************************** création des voitures dans le HTML *****************************************/
+
+
+
+/*********************************** création des voitures dans le HTML *****************************************/
 function createHTML() {
     Cars = [    {
         plate : "10",
@@ -183,7 +115,7 @@ function createHTML() {
         image : "430i.jpg"
     }]
     var toAppend = "";
-
+    
     Cars.forEach(function (car) {
         toAppend += 
         `<div id = "car${car.plate}" class = "eachCar cat-${car.category.join(" cat-")}">
@@ -197,7 +129,7 @@ function createHTML() {
         </div>`;
     });
     mainDiv.innerHTML = toAppend;
-
+    
 }
 
 createHTML ();
@@ -205,22 +137,105 @@ createHTML ();
 /******************************** Fin de la création du HTML **********************************/
 
 
+/******************************** tri sur les voitures début **********************************/
+
+let checkedArr = [];
+let allCars = document.querySelectorAll(".eachCar");
+
+// let choiceRadio = document.querySelector(".cat-radio")
+let inclusiveSearchButton = document.getElementById("inclusive-search-button");
+let exclusiveSearchButton = document.getElementById("exclusive-search-button");
+inclusiveSearchButton.addEventListener("change", searchCategory );
+exclusiveSearchButton.addEventListener("change", searchCategory );
+
+let choiceSearch = document.querySelectorAll(".check-search");
+choiceSearch.forEach(function(x){
+    x.addEventListener("change", searchCategory);            
+});
+
+function searchCategory() { 
+    /*efface toutes les voitures*/
+    allCars.forEach(function(x) {
+        x.style.display = "none";
+    });
+    /*récupère toutes les cases cochées*/
+    checkedArr = [];
+    var inputs = catCont.querySelectorAll("input[type=checkbox]:checked");
+    inputs.forEach(function(x){
+        checkedArr.push(x.value);
+    });
+    /* affiche toutes les voitures si rien n'est coché */
+    if (checkedArr.length == 0) {
+        allCars.forEach(function(x) {
+            x.style.display = "block";
+        })
+    }
+    if (exclusiveSearchButton.checked){ 
+            searchCategory2();
+        } else {
+            searchCategory1();       
+        };   
+    
+} 
+
+/******************************* sélection des voitures selon les catégories - choix exclusif **********************************/
+
+function searchCategory2() {
+        
+    for (let i = 0; i < allCars.length; i++) {          // fait passer toutes les voitures pour vérifier si elle contiennent la catégorie cochée
+        var display = true;                             // par défaut on consière que ces catégories sont bien présentes dans cette fiche voiture (div)
+        const car = allCars[i];
+        var allCats = car.className;
+        for (let j = 0; j < checkedArr.length; j++) {  // on va faire passer toutes les catégories cochées dans la boucle afin de vérifier si elle sont présente dans cette carte
+            const cat = checkedArr[j];                  
+            if (allCats.includes(cat) == false) {       // si une catégorie cochée n'est pas présente la boucle s'arrete (break)
+                display = false;
+                break;   
+            }
+        }
+        if (display) {                                  // si toutes les catégories cochées sont présentes alors la carte s'affiche (display reste true)
+            car.style.display ="block"
+        }
+    }
+    // retourne dans la boucle (le 2ème for) avec la catégorie suivante
+};  // retourne dans la boucle (le premier for) avec la voiture suivante
 
 
+/******************************* sélection des voitures selon les catégories - choix inclusif **********************************/
 
+function searchCategory1() {
+    /* affiche les voitures des catégories cochées*/
+    checkedArr.forEach(function(nameOfChooseCat) {
+        // récupérer toutes les div (cartes) avec la catégorie actuelle
+        var catDivsAll = document.querySelectorAll(".cat-" + nameOfChooseCat);
+        console.log(catDivsAll);
+        // et les passer en display none
+        catDivsAll.forEach(function(y) {
+            y.style.display = "block";
+        });
+        // retourne dans la boucle avec la catégorie suivante
+    });
+    
+};
+
+/******************************** tri sur les voitures fin **********************************/    
+    
+    
+    
+    
 /******************************** supprime des voitures en cliquant sur le x ************************************/
 
 // en cliquant sur le bouton on envoie les 2 infos (le bouton et la plaque) à la fonction deleteCar.
 
 function deleteCar(btn, pl) {                               // btn et pl sont les paramètres de la fonction qui reçoit en argument this et ${car.plate}
-    btn.parentElement.remove();                             // efface la div sans retirer du array en utilisant btn
-    for (let i = 0; i < Cars.length; i++) {                 // retire du array la voiture qui à été effacée en utilisant pl (la plaque)
-        const car = Cars[i];                                  
-        if (car.plate == pl) {
-            Cars.splice (i , 1);
-            break;
-        } 
-    }
+btn.parentElement.remove();                             // efface la div sans retirer du array en utilisant btn
+for (let i = 0; i < Cars.length; i++) {                 // retire du array la voiture qui à été effacée en utilisant pl (la plaque)
+    const car = Cars[i];                                  
+    if (car.plate == pl) {
+        Cars.splice (i , 1);
+        break;
+    } 
+}
 }  
 
 /******************************** supprime des voitures par son numéro de plaque ************************************/
@@ -233,53 +248,56 @@ function deleteCarBtn(plate) {
 };
 
 
+/******************************* ajoute une nouvelle voiture en remplissant le formulaire début ***********************************/
 
-/******************************* ajoute une nouvelle voiture en remplissant le formulaire ***********************************/
+let myForm = document.querySelector("#submit-adding-car");
 
-let myForm = document.querySelector(".adding");
-
-myForm.addEventListener("submit",addNewCar);
+myForm.addEventListener("click",addNewCar);
 
 function addNewCar() {                                 //ajoute une voiture au array 
     let plate = document.querySelector(".Plate");
     let make = document.querySelector("#select-make");
     let model = document.querySelector(".Model");
     let price = document.querySelector(".Price");
+    let errorMessage = document.querySelector(".error");
     
     /***********************  récupère le tableau des catégories et affiche les 2 premières *************************************/   
     
-    let boxes = myForm.querySelectorAll(".add-car:checked");
+    let contCheck = document.querySelector (".container-checkbox");
+    let boxes = contCheck.querySelectorAll("input[type=checkbox]:checked");
     let myCategory = [];
+    console.log(myCategory)
     boxes.forEach(function(x){
         myCategory.push(x.value);
     });
     if (myCategory.length > 2) {
         myCategory = myCategory.slice( 0 , 2 );
+        errorMessage.innerHTML = "Only 2 categories can be choosen";
     };
-    
-    
-    
-    /*********  vréifie que le numéro de plaque n'est pas déjà pris et si c'est le cas bloque le programme et affiche un message d'erreur  **********/
+    /*********  vérifie que le numéro de plaque n'est pas déjà pris et si c'est le cas bloque le programme et affiche un message d'erreur  **********/
     let Plate = plate.value;
-    Plate = Plate.replaceAll( "-", "" );  //supprime les acrractères problématiques
-    
-    
-        let allPlatesArr = [];                              
-        let allplates = document.querySelectorAll(".plate");
-        allplates.forEach(function(x) {
-            allPlatesArr.push(x.textContent);
-        });
-    if (allPlatesArr.includes(Plate)) {
-        let errorMessage = document.querySelector(".error");
-        errorMessage.innerHTML = "Your have a wrong plate number";
-    }
-    else {
-        var obj = new Car(Plate, myCategory, make.value, model.value, price.value, "e350.jpg")   
-        // errorMessage.innerHTML = "";
+    if (Plate === "") {
+        errorMessage.innerHTML = "Plate number can't be empty";
+        
+    }    else {
+        Plate = Plate.replaceAll( "-", "" );  //supprime les acrractères problématiques   
+            let allPlatesArr = [];                              
+            let allplates = document.querySelectorAll(".plate");
+            allplates.forEach(function(x) {
+                allPlatesArr.push(x.textContent);
+            });
+        if (allPlatesArr.includes(Plate)) {
+            errorMessage.innerHTML = "Your have a wrong plate number";
         }
-    
-    Cars.push(obj);
-    createNewCarHTML(obj)
+        else {    
+            errorMessage.innerHTML = "";
+            var obj = new Car(Plate, myCategory, make.value, model.value, price.value, "e350.jpg")   
+            }
+        
+        Cars.push(obj);
+        createNewCarHTML(obj)
+
+    }
     
 };
 
@@ -287,19 +305,43 @@ function createNewCarHTML(car) {                            //envoie ce nouvel �
     var div = document.createElement("div");
     div.className = `eachCar cat-${car.category.join(" cat-")} newCar"`
     div.id = `car${car.plate}`;
-    //creer le html avec la nouvelle méthode
-    var restHTML = 
-    `<h3 class = "category" > ${car.category.join(", ")} </h3>
-    <button class = "btn dlt btn-danger button" onclick = "deleteCar(this, '${car.plate}')"> X </button>
-    <img class = "image" src="./assets/${car.image}">
-    <p class = "make">${car.make}</p>
-    <p class = "model" >${car.model}</p>
-    <p class = "price">${car.price}</p>
-    <p class = "plate">${car.plate}</p>
-    `; 
-    div.innerHTML = restHTML;
-    
     mainDiv.appendChild(div);
+    
+    var H3 = document.createElement("H3");
+    H3.className = "category";
+    H3.innerHTML += `${car.category.join(", ")}`;
+    div.appendChild(H3);
+
+    var button = document.createElement("button");
+    button.className = "btn dlt btn-danger button";
+    button.setAttribute("onclick", `deleteCar(this, '${car.plate}')`);
+    button.innerHTML += "X";
+    div.appendChild(button);
+
+    var image = document.createElement ("img");
+    image.className = "image";
+    image.src = `./assets/${car.image}`;
+    div.appendChild(image);
+
+    var p1 = document.createElement("p");
+    p1.className = "make";
+    p1.innerHTML += `${car.make}`;
+    div.appendChild(p1);
+
+    var p2 = document.createElement("p");
+    p2.className = "model";
+    p2.innerHTML += `${car.model}`;
+    div.appendChild(p2);
+
+    var p3 = document.createElement("p");
+    p3.className = "price";
+    p3.innerHTML += `${car.price}`;
+    div.appendChild(p3);
+
+    var p4 = document.createElement("p");
+    p4.className = "plate";
+    p4.innerHTML += `${car.plate}`;
+    div.appendChild(p4);
 }
 
 class Car {
@@ -314,23 +356,24 @@ class Car {
 }
 
 
-/******************************* ajoute une nouvelle voiture en remplissant le formulaire *********************************/
+/******************************* ajoute une nouvelle voiture en remplissant le formulaire fin *********************************/
 
      
         
 /******************************* réinitialise la liste *********************************/
 
-var catCont2 = document.getElementById("cat-cont");
-// console.log (catCont2); // correct
-var inputs2 = catCont2.querySelectorAll("input[type=checkbox]:checked");
-// console.log(inputs2); // pas correct
-var checkedArr2 = [];
-inputs2.forEach(function(x){
-    checkedArr2.push(x.value);
-});
-if (checkedArr2.length < 1){
-document.querySelector("#myResetButton").addEventListener("click", createHTML);
-};
+document.querySelector("#myResetButton").addEventListener("click", resetHTML);
+
+function resetHTML() {
+    // let catCont = document.getElementById("cat-cont");
+    let checkedBoxes = catCont.querySelectorAll("input[type=checkbox]:checked");
+    createHTML();
+    if (checkedBoxes.length > 0){   
+    searchCategory() 
+    };
+}
+
+
 
 
 

@@ -26,31 +26,56 @@
 }
 /*********************** différents boutons *************************/
 .del-by-plate {
-    top: 200px;
+    top: 210px;
     
 }
 .reset {
     /* display: none; */
     top: 90px; 
 }
-.add-a-car {
-    top: 520px;
-}
 /**************** design du module de recherche par checkbox ***************/
 #cat-cont {
     position: fixed;
-    top: 310px;
+    top: 335px;
     left : 610px;
     width : 280px;
-    background-color: rgb(241, 239, 239);
-    padding: 10px 20px;
+    background-color: rgb(241, 239, 239); 
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 0px 20px 20px;
     /* display: none; */
-    
 }   
 #cat-cont p {
     font-size: 20px;
     padding-bottom: 20px;
 }
+.cat-button {
+    transition: all 0.5s linear ;
+    border : none;
+    margin: 10px 8px 15px -20px;
+    font-size: 16px;
+    padding: 5px 10px;
+    text-align: center;
+    cursor: pointer;
+}
+/* .cat-button:hover {
+    background-color: rgba(214, 219, 221, 0.562);
+    box-shadow: 1px 1px 10px grey;
+} */
+.cat-radio + label {
+    
+    padding: 3px 6px;
+}
+
+    
+.cat-radio:checked + label {
+    background-color: rgba(214, 219, 221, 0.562);
+    
+    box-shadow: 1px 1px 10px grey;
+}
+/* .cat-button input {
+    border: 20px black solid;
+} */
 .choice-search {
     margin-bottom: 5px;
     flex-wrap: nowrap;
@@ -62,13 +87,13 @@
 } 
 /*************  design des checkbox - début  **************/
 
-.container-checkbox, #cat-cont {
+.container-checkbox {
     display: flex;
     flex-wrap: wrap;
     padding: 25px 9px 10px 8px;
 }
 .right-container {
-    padding: 1px;  
+    padding: 1px; 
 }
 .left-container {
     padding: 1px;
