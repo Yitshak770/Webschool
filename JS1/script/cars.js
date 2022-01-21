@@ -8,25 +8,28 @@
     
     //ENLEVER LES ENREGISTREMENTS
     
+    
+    
+    /******************************* création des catégories dans le HTML **********************************/
+
 var Cars = []
 var mainDiv = document.getElementById("main");
 var catCont = document.getElementById("cat-cont");
+let contCheck = document.querySelector(".container-checkbox");
 
-function createHTMLCategories () {
-    
-    /******************************* création des catégories dans le HTML **********************************/
-    const Categories = [
-        "Electric" , "Luxury" , "Economy" , "Sport" , "Minivan" , "City-car" , "Subcompact" , "Sedan" , "Convertible" , "SUV"
-    ];
-    
+let Categories = [
+    "Electric" , "Luxury" , "Economy" , "Sport" , "Minivan" , "City-car" , "Subcompact" , "Sedan" , "Convertible" , "SUV"
+];
+
+function createHTMLCategories (a,b) {
     Categories.forEach(function(cat) {
         
         var div = document.createElement("div");
-        div.className = "choice choice-search";                        
-        catCont.appendChild(div);
+        div.className = "choice";                        
+        a.appendChild(div);
         
         var check = document.createElement("input");
-        check.className = "check-box check-search";                  
+        check.className = `check-box ${b}`;                  
         check.type = "checkbox";
         check.id = cat;
         check.name = cat;
@@ -42,7 +45,11 @@ function createHTMLCategories () {
         // check.addEventListener("change", searchCategory2);
     });
 }
-createHTMLCategories ()  
+createHTMLCategories (catCont, "check-search");
+createHTMLCategories (contCheck, "add-car");
+
+
+
 
 
 
@@ -359,7 +366,21 @@ class Car {
 /******************************* ajoute une nouvelle voiture en remplissant le formulaire fin *********************************/
 
      
-        
+/******************************* ajoute une catégorie *********************************/
+
+let buttonAddCat = document.querySelector(".add-categ");
+buttonAddCat.addEventListener("click", addCat);
+function addCat() {
+    Categories = [];
+    let newCat = prompt ("which category do you want to add ?").toLowerCase();
+    newCat.slice(0,1).toUpperCase();  // ne fonctionne pas
+    Categories.push(newCat);
+    createHTMLCategories (catCont, "check-search");
+    createHTMLCategories (contCheck, "add-car");
+}
+
+
+// Station Pickup
 /******************************* réinitialise la liste *********************************/
 
 document.querySelector("#myResetButton").addEventListener("click", resetHTML);

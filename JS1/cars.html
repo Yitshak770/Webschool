@@ -30,6 +30,9 @@
     <div class="del-by-plate my-button">
         <button onclick="deleteCarBtn(prompt('Enter car number'))"> Delete a car </button>
     </div>
+    <div class="add-categ my-button">
+        <button> Add a category </button>
+    </div>
     
     <div id="cat-cont">
         <div class = "cat-button">
@@ -40,7 +43,7 @@
             <input type = "radio" name = "cat-button" class = "cat-radio" id ="exclusive-search-button" value ="exclusive-search-button" checked>
             <label for="exclusive-search-button">Exclusive search</label>
         </div>
-        <p>Choisissez les catégories</p>
+        <p>Choose categories</p>
         </div>
     </div> 
     
@@ -101,8 +104,8 @@
         </div>
         <input type="text" name="" class="Model" placeholder="model">
         <div class="container-checkbox">
-            <div class="left-container">
-                <div class="choice">
+            
+                <!-- <div class="choice">
                     <input type="checkbox" name="Electric" value="Electric" id="Electric2" class= "check-box add-car">
                     <label for="Electric2">Electric</label>
                 </div>
@@ -122,8 +125,6 @@
                     <input type="checkbox" name="Convertible" value="Convertible" id="Convertible2" class= "check-box add-car">
                     <label for="Convertible2">Convertible</label>
                 </div>
-            </div>
-            <div class="right-container">
                 <div class="choice">
                     <input type="checkbox" name="Luxury" value="Luxury" id="Luxury2" class= "check-box add-car">
                     <label for="Luxury2">Luxury</label>
@@ -144,7 +145,8 @@
                     <input type="checkbox" name="SUV" value="SUV" id="SUV2" class= "check-box add-car">
                     <label for="SUV2">SUV</label>
                 </div>
-            </div>
+                 -->
+                
         </div>     
         <input type="text" name="" class="Price" value="$" placeholder="price">
         <input type="submit" id = "submit-adding-car" class = "submit" value="Submit">

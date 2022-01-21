@@ -2,7 +2,7 @@
 .my-button {
     position: fixed;
     padding: 0 30px;
-    height : 100px;
+    height : 75px;
     background-color: rgb(241, 239, 239);
     width: 280px;
     display: flex;
@@ -25,13 +25,14 @@
     
 }
 /*********************** différents boutons *************************/
-.del-by-plate {
-    top: 210px;
-    
-}
 .reset {
-    /* display: none; */
     top: 90px; 
+}
+.del-by-plate {
+    top: 171px;
+}
+.add-categ {
+    top : 253px;
 }
 /**************** design du module de recherche par checkbox ***************/
 #cat-cont {
@@ -42,12 +43,13 @@
     background-color: rgb(241, 239, 239); 
     display: flex;
     flex-wrap: wrap;
-    padding: 20px 0px 20px 20px;
-    /* display: none; */
+    padding: 20px 0px 20px 20px;  
 }   
 #cat-cont p {
     font-size: 20px;
     padding-bottom: 20px;
+    padding-left: 40px;
+    
 }
 .cat-button {
     transition: all 0.5s linear ;
@@ -58,45 +60,27 @@
     text-align: center;
     cursor: pointer;
 }
-/* .cat-button:hover {
-    background-color: rgba(214, 219, 221, 0.562);
-    box-shadow: 1px 1px 10px grey;
-} */
 .cat-radio + label {
     
     padding: 3px 6px;
 }
-
-    
 .cat-radio:checked + label {
     background-color: rgba(214, 219, 221, 0.562);
     
     box-shadow: 1px 1px 10px grey;
 }
-/* .cat-button input {
-    border: 20px black solid;
-} */
-.choice-search {
+.choice {
     margin-bottom: 5px;
     flex-wrap: nowrap;
-    flex-basis: 50%;
-    
+    flex-basis: 50%;    
 }
-.choice-search label {
-    padding-left: 5px!important;
-} 
+
 /*************  design des checkbox - début  **************/
 
 .container-checkbox {
     display: flex;
     flex-wrap: wrap;
-    padding: 25px 9px 10px 8px;
-}
-.right-container {
-    padding: 1px; 
-}
-.left-container {
-    padding: 1px;
+    padding: 20px 0px 0px 20px;
 }
 .choice label {
     font-size: 15px;
@@ -106,11 +90,17 @@
     padding-right: 20px;
     cursor: pointer;
 }
+.choice label::first-letter {
+    text-transform:uppercase!important;
+}
 .check-box {
     width : 12px;
     height: 12px;
     border-radius: 20%;
     cursor: pointer;
+}
+.check-box label {
+    padding-left: 5px!important;
 }
 .check-box:hover {
     box-shadow: 0px 1px 2px 0px grey;
@@ -229,8 +219,9 @@
     flex-direction: column;
     top: 90px;
     left : 910px;
-    width: 260px;
-    height : 500px;
+    width: 280px;
+    min-height : 500px;
+    padding-top: 20px;
 }
 .adding p {
     font-size : 20px;
@@ -245,7 +236,7 @@
 .adding input:not([type="checkbox"]){                  /* pour exclure les checkbox*/
     margin-top: 18px;
     height : 40px;
-    width: 235px;
+    width: 88%;
     padding: 10px;
 }
 /*************  design des menus déroulant - début  **************/
@@ -259,7 +250,7 @@
 	border-radius: 0;
     outline :0;
     cursor: pointer;
-    width : 91%;
+    width : 88%;
     height : 40px;
 }
 #select-make {
@@ -298,6 +289,8 @@
     display: flex;
     flex-direction: row;
     justify-content: center;
+    height : 50px;
+    margin-bottom: 5px;
 }
 #submit-adding-car:hover {
     background-color: rgb(201, 201, 201);
@@ -306,6 +299,11 @@
     color : red;
     margin-top: 15px;
 }
+
+/*************** ajout de catégorie **********************/
+/* p:first-letter {
+    text-transform:capitalize;
+} */
 
 
 
