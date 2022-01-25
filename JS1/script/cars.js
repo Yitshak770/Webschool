@@ -21,8 +21,8 @@ let Categories = [
     "Electric" , "Luxury" , "Economy" , "Sport" , "Minivan" , "City-car" , "Subcompact" , "Sedan" , "Convertible" , "SUV"
 ];
 
-function createHTMLCategories (a,b) {
-    Categories.forEach(function(cat) {
+function createHTMLCategories (a,b,c) {
+    c.forEach(function(cat) {
         
         var div = document.createElement("div");
         div.className = "choice";                        
@@ -45,8 +45,8 @@ function createHTMLCategories (a,b) {
         // check.addEventListener("change", searchCategory2);
     });
 }
-createHTMLCategories (catCont, "check-search");
-createHTMLCategories (contCheck, "add-car");
+createHTMLCategories (catCont, "check-search", Categories);
+createHTMLCategories (contCheck, "add-car", Categories);
 
 
 
@@ -144,22 +144,48 @@ createHTML ();
 /******************************** Fin de la création du HTML **********************************/
 
 
+/******************************* ajoute une catégorie *********************************/
+
+let buttonAddCat = document.querySelector(".add-categ");
+buttonAddCat.addEventListener("click", addCat);
+
+
+function addCat() {
+    
+    let categoryNew =[];
+    let newCat = prompt ("which category do you want to add ?").toLowerCase();
+    newCat = newCat.slice(0,1).toUpperCase() + newCat.slice(1);  // ne fonctionne pas       
+    categoryNew.push(newCat);
+    Categories.push(newCat);  // uniquement pour mettre à jour le array des catégories
+    
+    createHTMLCategories (catCont, "check-search", categoryNew);
+    createHTMLCategories (contCheck, "add-car", categoryNew);   
+    initSearchCheckbox();
+}
+
+// Station Pickup
 /******************************** tri sur les voitures début **********************************/
 
 let checkedArr = [];
 let allCars = document.querySelectorAll(".eachCar");
 
-// let choiceRadio = document.querySelector(".cat-radio")
-let inclusiveSearchButton = document.getElementById("inclusive-search-button");
-let exclusiveSearchButton = document.getElementById("exclusive-search-button");
-inclusiveSearchButton.addEventListener("change", searchCategory );
-exclusiveSearchButton.addEventListener("change", searchCategory );
+initSearchCheckbox();
 
-let choiceSearch = document.querySelectorAll(".check-search");
-choiceSearch.forEach(function(x){
-    x.addEventListener("change", searchCategory);            
-});
+function initSearchCheckbox() {
 
+    
+    // let choiceRadio = document.querySelector(".cat-radio")
+    let inclusiveSearchButton = document.getElementById("inclusive-search-button");
+    let exclusiveSearchButton = document.getElementById("exclusive-search-button");
+    inclusiveSearchButton.addEventListener("change", searchCategory );
+    exclusiveSearchButton.addEventListener("change", searchCategory );
+    
+    let choiceSearch = document.querySelectorAll(".check-search");  // ne fonctionne pas sur les nouvelles catégories
+    choiceSearch.forEach(function(x){
+        x.addEventListener("change", searchCategory);            
+    });
+    
+}
 function searchCategory() { 
     /*efface toutes les voitures*/
     allCars.forEach(function(x) {
@@ -366,21 +392,6 @@ class Car {
 /******************************* ajoute une nouvelle voiture en remplissant le formulaire fin *********************************/
 
      
-/******************************* ajoute une catégorie *********************************/
-
-let buttonAddCat = document.querySelector(".add-categ");
-buttonAddCat.addEventListener("click", addCat);
-function addCat() {
-    Categories = [];
-    let newCat = prompt ("which category do you want to add ?").toLowerCase();
-    newCat.slice(0,1).toUpperCase();  // ne fonctionne pas
-    Categories.push(newCat);
-    createHTMLCategories (catCont, "check-search");
-    createHTMLCategories (contCheck, "add-car");
-}
-
-
-// Station Pickup
 /******************************* réinitialise la liste *********************************/
 
 document.querySelector("#myResetButton").addEventListener("click", resetHTML);
@@ -393,6 +404,8 @@ function resetHTML() {
     searchCategory() 
     };
 }
+
+
 
 
 

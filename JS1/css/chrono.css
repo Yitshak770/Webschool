@@ -1,0 +1,45 @@
+#chrono {
+    margin-left: -30px;
+    font-size: 50px;
+    background-color: rgb(0, 255, 149);
+    display: flex;
+    padding: 20px;
+    border-radius: 50%;
+    width: 300px;
+    height: 300px;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: column;
+    margin: auto;
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    
+}
+#chrono p {
+    text-align: center; 
+    font-size: 30px;   
+    background-color: rgba(128, 128, 128, 0.349);
+    padding: 5px;
+    border-radius: 10px;
+    box-shadow: 1px 1px 10px grey;
+    cursor: pointer;
+    transition: all 0.2s linear;
+}
+#chrono p:hover {
+    box-shadow: 1px 1px 14px rgb(112, 112, 112);
+    background-color: rgba(128, 128, 128, 0.233);
+}
+.time{
+    display: inline-block;
+    padding: 10px;
+}
+#info {
+    margin-top: 30px;
+    font-size: 20px;
+    display: inline-block;
+    padding: 5px 15px;
+    
+}
+.chrono-cont {
+    text-align: center;
+}
+

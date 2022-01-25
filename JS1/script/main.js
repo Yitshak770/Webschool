@@ -438,224 +438,36 @@ function essai27() {
     let age = TOOLS.fixNan(prompt("How old are you ?"));
 };
 
-// FOREACH
+// SETTIMEOUT
 function essai28() {
-    document.querySelector("#main").classList.add("visible");
-    document.querySelector(".recherche").classList.add("visible");
-    document.querySelector(".reset").classList.add("visible");
-
-    // CREATION DU HTML POUR LES VOITURES
     
-    const Cars = [
-        {
-            make : "Jaguar",
-            model : "XJ50",
-            category : "Luxury",
-            price : "$80000",
-            image : "xj50.jpg"
-        },
-        {
-            make : "Ferrari",
-            model : "F8",
-            category : "Sport",
-            price : "$150000",
-            image : "ferrari.jpg"
-        }
-    ]
+    setTimeout(function(){
+        console.log(1)
+    },1000);
 
+    setTimeout(function(){
+        console.log(2)
+    },800);
     
-    var mainDiv = document.getElementById("main");
-    var toAppend = "";
-
-    Cars.forEach(addCars);
-    mainDiv.innerHTML = toAppend;
-
-    // function addCars(car, i) {
-    //     toAppend += 
-    //     `<div id = "car${i}" class = "eachCar">
-    //     <h3 class = "category" > ${car.category} </h3>
-    //     <button class = "btn btn-danger button" onclick = "deleteCar(this)"> X </button>
-    //     <img class = "image" src="./assets/${car.image}">
-    //     <p class = "make">${car.make}</p>
-    //     <p class = "model" >${car.model}</p>
-    //     <p class = "price">${car.price}</p>
-    //     </div>`;
-    // }
-
-    // function deleteCar(btn) {
-    //     btn.parentElement.remove();
-    // }
-
-    // NOUVEL ESSAI DEBUT
-
-    function addCars(car, i) {
-            toAppend += 
-            `<div id = "car${i}" class = "eachCar">
-            <h3 class = "category" > ${car.category} </h3>
-            <button class = "btn btn-danger button" onclick = "deleteCar(this)"> X </button>
-            <img class = "image" src="./assets/${car.image}">
-            <p class = "make">${car.make}</p>
-            <p class = "model" >${car.model}</p>
-            <p class = "price">${car.price}</p>
-            </div>`;
-        }
+    setTimeout(function(){
+        console.log(3)
+    },400);
     
-        function deleteCar(btn) {
-            // document.getElementById("car" + car).remove();
-            btn.parentElement.remove();
-        }
-
-    // NOUVEL ESSAI FIN
+    setTimeout(function(){
+        console.log(4)
+    },100);
 
 
-    // let listeCars = document.querySelector(".liste");
-    
-    // cars.forEach(createHTML);
-    
-    // function createHTML(car,i) {
-        
-    //     listeCars.innerHTML += 
-    //     `<div class = "voitures" id = "car${i}" >
-    //     <div class = "marque">${car.make}</div>
-    //     <div class = "modele">${car.model}</div> 
-    //     <div class = "categ">${car.category}</div>  
-    //     <div class = "price">${car.price}</div>
-    //     <img class = "photo" src="./assets/${car.image}" alt=""> 
-    //     <div onclick="close(this)" class="fermeture btn">X</div>  
-    //     </div>`;
-        
-    //     // EFFACER LES CARTES EN CLIQUANT SUR LE X
-        
-    // }
-    // function close(btn) {
-    // btn.parentElement.style.display = "none" ; 
-    // }
-};   
-    
-    
-    
-    // let resId = "";
-    // let btn = document.querySelectorAll(".fermeture");
-    // btn.forEach(button);
-    //     function button(btn,i) {
-    //     btn.addEventListener("click", detect);
-    //     btn.addEventListener("click", close);
-    //     function detect(e) {      
-    //             resId = parseInt(`${e.target.id}`.slice(1));
-    //         }
-    //     function close() {
-    //             document.querySelector("#v"+resId).style.display = "none" ; 
-    //         }
-    // };   
+    /*dans une boucle*/
 
-
-
-    // CREATION DU HTML POUR LES CATEGORIES
-    
-    const CATEG = [
-        {
-            nameC : "sport",
-            texteC: "Sport"
-        },
-        {
-            nameC : "luxury",
-            texteC: "Luxury"
-        },
-        {
-            nameC : "suv",
-            texteC: "SUV"
-        },
-        {
-            nameC : "electric",
-            texteC: "Electric"
-        },
-        {
-            nameC : "economy",
-            texteC: "Economy"
-        },
-        {
-            nameC : "city-car",
-            texteC: "City car"
-        },
-        {
-            nameC : "subcompact",
-            texteC: "Subcompact"
-        },
-        {
-            nameC : "convertible",
-            texteC: "Convertible"
-        },
-        {
-            nameC : "minivan",
-            texteC: "Minivan"
-        },
-        {
-            nameC : "sedan",
-            texteC: "Sedan"
-        }
-    ]
-
-    let listeCateg = document.querySelector(".categories");
-    
-    CATEG.forEach(CreateHTML);
-    
-    function CreateHTML(categ,i) {
-        
-        listeCateg.innerHTML += 
-        `<div class="choix">
-            <input type="checkbox" name="${categ.nameC}" id="${categ.nameC}" class= "check-box">
-            <label for="${categ.nameC}">${categ.texteC}</label>
-        </div>`
-    }
-
-
-
-
-    // RESET
-
-    let resetButton = document.querySelector(".reset button");
-    resetButton.addEventListener("click", reset);
-    let cartes = document.querySelectorAll(".voitures");
-    function reset() {
-        for (let i = 0; i < cartes.length; i++) {
-            cartes[i].style.display = "block" ;    
-        };
-    }
-     
-    // TRI EN COCHANT LES CHECKBOX
-
-
-
-    let checkSport = document.querySelector("#sport");
-    
-    checkSport.addEventListener("click", afficheSport);
-    
-    function afficheSport() {
-        if (checkSport.checked == true) {
-            for (let i = 0; i < cartes.length; i++) {
-                cartes[i].style.display = "none" ; 
-
-                
-                let carSport = document.querySelector("#categ");
-                console.log(carSport);
-                // cartes[i].style.display = "block!important";
-
-
-
-            };
-            
-                
-                
-                
-            
-            
-        }
+    for (let i = 0; i < 10; i++) {
+        setTimeout(function(){
+            console.log(i)
+        },1000*i);
         
     }
 
-  
-
-    
+}    
     
     
     
