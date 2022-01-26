@@ -171,15 +171,15 @@ let allCars = document.querySelectorAll(".eachCar");
 
 initSearchCheckbox();
 
-function initSearchCheckbox() {
 
-    
-    // let choiceRadio = document.querySelector(".cat-radio")
-    let inclusiveSearchButton = document.getElementById("inclusive-search-button");
-    let exclusiveSearchButton = document.getElementById("exclusive-search-button");
-    inclusiveSearchButton.addEventListener("change", searchCategory );
-    exclusiveSearchButton.addEventListener("change", searchCategory );
-    
+
+// let choiceRadio = document.querySelector(".cat-radio")
+let inclusiveSearchButton = document.getElementById("inclusive-search-button");
+let exclusiveSearchButton = document.getElementById("exclusive-search-button");
+inclusiveSearchButton.addEventListener("change", searchCategory );
+exclusiveSearchButton.addEventListener("change", searchCategory );
+
+function initSearchCheckbox() {
     let choiceSearch = document.querySelectorAll(".check-search");  // ne fonctionne pas sur les nouvelles catégories
     choiceSearch.forEach(function(x){
         x.addEventListener("change", searchCategory);            
