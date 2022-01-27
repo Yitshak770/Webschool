@@ -23,10 +23,10 @@ function myStart() {
         } else {
             C.sec.val = 00;
             C.sec.DOM.innerHTML = "00";
+            C.mn.val ++;
             C.mn.val < 10 
                 ? C.mn.DOM.innerHTML = `0${C.mn.val}` 
                 : C.mn.DOM.innerHTML = C.mn.val;
-            C.mn.val = 01;
         }
     }, 100);
     stopC.addEventListener("click", myStop);
@@ -34,8 +34,8 @@ function myStart() {
         clearInterval(chrono);
         startC.addEventListener("click", myStart);
     }
-    stopC.addEventListener("dblclick", myStopReset);
-        function myStopReset() {
+    stopC.addEventListener("dblclick", myReset);
+        function myReset() {
             clearInterval (chrono); 
             startC.addEventListener("click", myStart);
             C.sec.val = 00;

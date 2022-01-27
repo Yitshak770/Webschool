@@ -42,4 +42,17 @@
 .chrono-cont {
     text-align: center;
 }
+.time-display {
+    position : relative
+}
+#S1, #S2 {
+    position: absolute;
+    top : 10px;
+}
+#S1 {
+    left : 63px;  
+}
+#S2 {
+    left : 132px;  
+}
 
