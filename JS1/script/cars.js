@@ -21,7 +21,7 @@ let Categories = [
     "Electric" , "Luxury" , "Economy" , "Sport" , "Minivan" , "City-car" , "Subcompact" , "Sedan" , "Convertible" , "SUV"
 ];
 
-function createHTMLCategories (a,b,c) {
+function createHTMLCategories (a,b,c,d) {
     c.forEach(function(cat) {
         
         var div = document.createElement("div");
@@ -31,22 +31,22 @@ function createHTMLCategories (a,b,c) {
         var check = document.createElement("input");
         check.className = `check-box ${b}`;                  
         check.type = "checkbox";
-        check.id = cat;
+        check.id = `${d}${cat}`;
         check.name = cat;
         check.value = cat;
         div.appendChild(check);
         
         var label = document.createElement("label");
         // label.setAttribute("for", cat); 
-        label.htmlFor = cat;                         
+        label.htmlFor = `${d}${cat}`;                         
         label.innerHTML += cat;
         div.appendChild(label);
         
         // check.addEventListener("change", searchCategory2);
     });
 }
-createHTMLCategories (catCont, "check-search", Categories);
-createHTMLCategories (contCheck, "add-car", Categories);
+createHTMLCategories (catCont, "check-search", Categories, "");
+createHTMLCategories (contCheck, "add-car", Categories, "Crea");
 
 
 
@@ -63,6 +63,7 @@ function createHTML() {
         model : "XJ50",
         category : ["Luxury", "Sedan"],
         price : "$80000",
+        date : "27/01/2022",
         image : "xj50.jpg"
     },
     {
@@ -71,6 +72,7 @@ function createHTML() {
         model : "F8",
         category : ["Sport", "Luxury"],
         price : "$150000",
+        date : "27/01/2022",
         image : "ferrari.jpg"
     },
     {
@@ -79,6 +81,7 @@ function createHTML() {
         model : "Rav4",
         category : ["SUV"],
         price : "$40000",
+        date : "27/01/2022",
         image : "rav4.jpg"
     },
     {
@@ -87,6 +90,7 @@ function createHTML() {
         model : "Model X",
         category : ["Electric", "Sport"],
         price : "$60000",
+        date : "27/01/2022",
         image : "tesla.jpg"
     },
     {
@@ -95,6 +99,7 @@ function createHTML() {
         model : "Corsa",
         category : ["Economy"],
         price : "$20000",
+        date : "27/01/2022",
         image : "corsa.jpg"
     },
     {
@@ -103,6 +108,7 @@ function createHTML() {
         model : "Aygo",
         category : ["City-car", "Economy"],
         price : "$15000",
+        date : "27/01/2022",
         image : "aygo.jpg"
     },
     {
@@ -111,6 +117,7 @@ function createHTML() {
         model : "Clio",
         category : ["Subcompact"],
         price : "$18000",
+        date : "27/01/2022",
         image : "clio.jpg"
     },
     {
@@ -119,6 +126,7 @@ function createHTML() {
         model : "430i",
         category : ["Convertible", "Luxury"],
         price : "$130000",
+        date : "27/01/2022",
         image : "430i.jpg"
     }]
     var toAppend = "";
@@ -132,6 +140,7 @@ function createHTML() {
         <p class = "make">${car.make}</p>
         <p class = "model" >${car.model}</p>
         <p class = "price">${car.price}</p>
+        <p class = "my-date">${car.date}</p>
         <p class = "plate">${car.plate}</p>
         </div>`;
     });
@@ -154,12 +163,12 @@ function addCat() {
     
     let categoryNew =[];
     let newCat = prompt ("which category do you want to add ?").toLowerCase();
-    newCat = newCat.slice(0,1).toUpperCase() + newCat.slice(1);  // ne fonctionne pas       
+    newCat = newCat.slice(0,1).toUpperCase() + newCat.slice(1);         
     categoryNew.push(newCat);
     Categories.push(newCat);  // uniquement pour mettre à jour le array des catégories
     
     createHTMLCategories (catCont, "check-search", categoryNew);
-    createHTMLCategories (contCheck, "add-car", categoryNew);   
+    createHTMLCategories (contCheck, "add-car", categoryNew, "Crea");   
     initSearchCheckbox();
 }
 
@@ -169,23 +178,20 @@ function addCat() {
 let checkedArr = [];
 let allCars = document.querySelectorAll(".eachCar");
 
-initSearchCheckbox();
-
-
-
-// let choiceRadio = document.querySelector(".cat-radio")
 let inclusiveSearchButton = document.getElementById("inclusive-search-button");
 let exclusiveSearchButton = document.getElementById("exclusive-search-button");
 inclusiveSearchButton.addEventListener("change", searchCategory );
 exclusiveSearchButton.addEventListener("change", searchCategory );
 
+initSearchCheckbox();
+
 function initSearchCheckbox() {
-    let choiceSearch = document.querySelectorAll(".check-search");  // ne fonctionne pas sur les nouvelles catégories
+    let choiceSearch = document.querySelectorAll(".check-search");  
     choiceSearch.forEach(function(x){
         x.addEventListener("change", searchCategory);            
-    });
-    
+    });  
 }
+
 function searchCategory() { 
     /*efface toutes les voitures*/
     allCars.forEach(function(x) {
@@ -241,7 +247,7 @@ function searchCategory1() {
     checkedArr.forEach(function(nameOfChooseCat) {
         // récupérer toutes les div (cartes) avec la catégorie actuelle
         var catDivsAll = document.querySelectorAll(".cat-" + nameOfChooseCat);
-        console.log(catDivsAll);
+        
         // et les passer en display none
         catDivsAll.forEach(function(y) {
             y.style.display = "block";
@@ -287,19 +293,28 @@ let myForm = document.querySelector("#submit-adding-car");
 
 myForm.addEventListener("click",addNewCar);
 
+
 function addNewCar() {                                 //ajoute une voiture au array 
     let plate = document.querySelector(".Plate");
     let make = document.querySelector("#select-make");
     let model = document.querySelector(".Model");
     let price = document.querySelector(".Price");
+    let myDate = document.querySelector(".my-date");
     let errorMessage = document.querySelector(".error");
+
+    myDate = Intl.DateTimeFormat("fr").format(new Date());
+    let myDateNbr = new Date().getTime();
+
+    
+    
+    
     
     /***********************  récupère le tableau des catégories et affiche les 2 premières *************************************/   
     
     let contCheck = document.querySelector (".container-checkbox");
     let boxes = contCheck.querySelectorAll("input[type=checkbox]:checked");
     let myCategory = [];
-    console.log(myCategory)
+    
     boxes.forEach(function(x){
         myCategory.push(x.value);
     });
@@ -324,12 +339,29 @@ function addNewCar() {                                 //ajoute une voiture au a
         }
         else {    
             errorMessage.innerHTML = "";
-            var obj = new Car(Plate, myCategory, make.value, model.value, price.value, "e350.jpg")   
+            var obj = new Car(Plate, myCategory, make.value, model.value, price.value, myDate, "e350.jpg")   
             }
         
         Cars.push(obj);
-        createNewCarHTML(obj)
-
+        createNewCarHTML(obj);
+            
+        
+        /////////////// réinitialisation des champs début                                         
+        let plate1 = document.querySelector(".Plate");
+            plate1.value = "";
+        let make1 = document.querySelector("#select-make");
+            make1.value = "";
+        let model1 = document.querySelector(".Model");
+            model1.value = "";
+        let price1 = document.querySelector(".Price");
+            price1.value = "";
+        let checkbox1 = document.querySelectorAll(".add-car");
+            checkbox1.forEach(function(z) {
+                if (z.checked = true) {
+                    z.checked = false;
+                }
+            });
+        /////////////// réinitialisation des champs fin
     }
     
 };
@@ -375,15 +407,23 @@ function createNewCarHTML(car) {                            //envoie ce nouvel �
     p4.className = "plate";
     p4.innerHTML += `${car.plate}`;
     div.appendChild(p4);
+    
+    var p5 = document.createElement("p");
+    p5.className = "my-date";
+    p5.innerHTML += `${car.myDate}`;
+    div.appendChild(p5);
+
+    
 }
 
 class Car {
-    constructor(_plate, _category, _make, _model, _price, _image) {
+    constructor(_plate, _category, _make, _model, _price, _myDate, _image) {
         this.plate = _plate;
         this.category = _category;
         this.make = _make;
         this.model = _model;
         this.price = _price;
+        this.myDate = _myDate;
         this.image = _image;
     }
 }
@@ -397,12 +437,17 @@ class Car {
 document.querySelector("#myResetButton").addEventListener("click", resetHTML);
 
 function resetHTML() {
-    // let catCont = document.getElementById("cat-cont");
-    let checkedBoxes = catCont.querySelectorAll("input[type=checkbox]:checked");
-    createHTML();
-    if (checkedBoxes.length > 0){   
-    searchCategory() 
-    };
+    let checkedBoxes = document.querySelectorAll(".check-search:checked");
+    if (checkedBoxes.length == 0) {
+        createHTML();
+    } else { 
+        checkedBoxes.forEach(function(){
+            if (this.checked = true){ 
+                createHTML()  
+                searchCategory() 
+            } 
+        });
+    } 
 }
 
 

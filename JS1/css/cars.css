@@ -173,13 +173,13 @@
 }
 .model{
     position: absolute;
-    top : 130px;
+    top : 123px;
     font-size: 20px;
     left: 300px;
 }
 .price{
     position: absolute;
-    top : 175px;
+    top : 160px;
     font-size: 20px;
     left: 300px;
 }
@@ -194,6 +194,12 @@
     right : 40px;
     bottom: 30px;
     background-color: rgb(182, 228, 250);
+}
+.my-date {
+    position: absolute;
+    bottom: 30px;
+    left : 300px;
+    font-style: italic;
 }
 /************** bouton rouge pour supprimer des voitures ****************/
 .btn{
@@ -308,5 +314,7 @@
     text-transform:capitalize;
 } */
 
+
+  
 
 

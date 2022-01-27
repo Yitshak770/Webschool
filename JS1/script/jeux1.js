@@ -12,8 +12,6 @@ var H31 = "";
 var H32 = "Your message : "
 var cpt = "";
 
-
-
 /*creation du array de cartes*/
 for (let i = 0; i < nbCard; i++) {
     cards.push(i);
@@ -116,24 +114,19 @@ function myInit(){
     });
 };
     
-    
-    
-    
-    
     var myCard = document.querySelectorAll(".card");
     var myButton = document.querySelector(".memory p");
     var myH4 = document.querySelectorAll("H4");
     var myH3 = document.querySelector(".nb-tries");
-    var myMessage = null
+    var myMessage = null; 
     
+    myButton.addEventListener("click", myGameComplete);
     
-    myButton.addEventListener("click", myGame);
-    
-    function myGame() {
+    function myGameComplete() {
 
         /*remise à zéro*/
 
-        myButton.removeEventListener("click", myGame);
+        myButton.removeEventListener("click", myGameComplete);
         
         tries = 0;
         found = 0;
@@ -182,25 +175,28 @@ function myInit(){
             function myGame() {
                 
                 tries ++;
+                H31.innerHTML = `Number of tries : ${tries}`;
                 if (z.className == "card card-pair") {
                     found ++;
                     z.style.backgroundColor = "green";
                     z.firstChild.style.display = "block";
                     z.removeEventListener("click",myGame);
-                    console.log(found)
-                    H31.innerHTML = `Number of tries : ${tries}`;
-                }
-                if (found > nbCard/2-1 && tries <= parseInt(nbCard/1.8) ) {
-                    mess = "You Win !!!" ;
-                    myStop();
-                    const myTimeout = setTimeout(myGreeting, 1000);
-                    function myGreeting() {
-                        let nameWinner = prompt ("what is your name ?");
-                        alert(`Congratulation ${nameWinner}, you have played with ${nbCard} cards and won in ${tries} tries within ${C.mn.DOM.innerHTML}:${C.sec.DOM.innerHTML} seconds` );
-
+                    if (found == nbCard/2 && tries > parseInt(nbCard/1.8) ) {
+                        mess = "Too much tries - Game over" ;
+                        myStop();
+                    }
+                    if (found == nbCard/2 && tries <= parseInt(nbCard/1.8) ) {
+                        mess = "You Win !!!" ;
+                        myStop();    
+                        const myTimeout = setTimeout(myGreeting, 1000);
+                        function myGreeting() {
+                            let nameWinner = prompt ("what is your name ?");
+                            alert(`Congratulation ${nameWinner}, you have played with ${nbCard} cards and won in ${tries} tries within ${C.mn.DOM.innerHTML}:${C.sec.DOM.innerHTML} seconds` );
+                        }
                     }
                 }
                 H32.innerHTML = `Your message : <span class = "msg">${mess}</span>`;
+                z.removeEventListener("click",myGame);;  
             };
         });
     };
