@@ -12,19 +12,14 @@
     
     /******************************* création des catégories dans le HTML **********************************/
 
-var carsArray = JSON.parse(localStorage.cars);
+var Cars = []
 var mainDiv = document.getElementById("main");
 var catCont = document.getElementById("cat-cont");
 let contCheck = document.querySelector(".container-checkbox");
 
-/*let Categories = [
+let Categories = [
     "Electric" , "Luxury" , "Economy" , "Sport" , "Minivan" , "City-car" , "Subcompact" , "Sedan" , "Convertible" , "SUV"
 ];
-let catJson = JSON.stringify(Categories);
-console.log (catJson)
-localStorage.categories = catJson;*/
-
-let catArray = JSON.parse(localStorage.categories)
 
 function createHTMLCategories (a,b,c,d) {
     c.forEach(function(cat) {
@@ -50,8 +45,9 @@ function createHTMLCategories (a,b,c,d) {
         // check.addEventListener("change", searchCategory2);
     });
 }
-createHTMLCategories (catCont, "check-search", catArray, "");
-createHTMLCategories (contCheck, "add-car", catArray, "Crea");
+createHTMLCategories (catCont, "check-search", Categories, "");
+createHTMLCategories (contCheck, "add-car", Categories, "Crea");
+
 
 
 
@@ -61,88 +57,81 @@ createHTMLCategories (contCheck, "add-car", catArray, "Crea");
 
 /*********************************** création des voitures dans le HTML *****************************************/
 function createHTML() {
-    
-    // Cars = [    {
-    //     plate : "10",
-    //     make : "Jaguar",
-    //     model : "XJ50",
-    //     category : ["Luxury", "Sedan"],
-    //     price : "$80000",
-    //     date : "27/01/2022",
-    //     image : "xj50.jpg"
-    // },
-    // {
-    //     plate : "11",
-    //     make : "Ferrari",
-    //     model : "F8",
-    //     category : ["Sport", "Luxury"],
-    //     price : "$150000",
-    //     date : "27/01/2022",
-    //     image : "ferrari.jpg"
-    // },
-    // {
-    //     plate : "12",
-    //     make : "Toyota",
-    //     model : "Rav4",
-    //     category : ["SUV"],
-    //     price : "$40000",
-    //     date : "27/01/2022",
-    //     image : "rav4.jpg"
-    // },
-    // {
-    //     plate : "13",
-    //     make : "Tesla",
-    //     model : "Model X",
-    //     category : ["Electric", "Sport"],
-    //     price : "$60000",
-    //     date : "27/01/2022",
-    //     image : "tesla.jpg"
-    // },
-    // {
-    //     plate : "14",
-    //     make : "Opel",
-    //     model : "Corsa",
-    //     category : ["Economy"],
-    //     price : "$20000",
-    //     date : "27/01/2022",
-    //     image : "corsa.jpg"
-    // },
-    // {
-    //     plate : "15",
-    //     make : "Toyota",
-    //     model : "Aygo",
-    //     category : ["City-car", "Economy"],
-    //     price : "$15000",
-    //     date : "27/01/2022",
-    //     image : "aygo.jpg"
-    // },
-    // {
-    //     plate : "16",
-    //     make : "Renault",
-    //     model : "Clio",
-    //     category : ["Subcompact"],
-    //     price : "$18000",
-    //     date : "27/01/2022",
-    //     image : "clio.jpg"
-    // },
-    // {
-    //     plate : "17",
-    //     make : "BMW",
-    //     model : "430i",
-    //     category : ["Convertible", "Luxury"],
-    //     price : "$130000",
-    //     date : "27/01/2022",
-    //     image : "430i.jpg"
-    // }]
-    // let carsJson = JSON.stringify(Cars);
-
-    // localStorage.cars = carsJson;
-    
-    // let carsArray = JSON.parse(localStorage.cars);
-
+    Cars = [    {
+        plate : "10",
+        make : "Jaguar",
+        model : "XJ50",
+        category : ["Luxury", "Sedan"],
+        price : "$80000",
+        date : "27/01/2022",
+        image : "xj50.jpg"
+    },
+    {
+        plate : "11",
+        make : "Ferrari",
+        model : "F8",
+        category : ["Sport", "Luxury"],
+        price : "$150000",
+        date : "27/01/2022",
+        image : "ferrari.jpg"
+    },
+    {
+        plate : "12",
+        make : "Toyota",
+        model : "Rav4",
+        category : ["SUV"],
+        price : "$40000",
+        date : "27/01/2022",
+        image : "rav4.jpg"
+    },
+    {
+        plate : "13",
+        make : "Tesla",
+        model : "Model X",
+        category : ["Electric", "Sport"],
+        price : "$60000",
+        date : "27/01/2022",
+        image : "tesla.jpg"
+    },
+    {
+        plate : "14",
+        make : "Opel",
+        model : "Corsa",
+        category : ["Economy"],
+        price : "$20000",
+        date : "27/01/2022",
+        image : "corsa.jpg"
+    },
+    {
+        plate : "15",
+        make : "Toyota",
+        model : "Aygo",
+        category : ["City-car", "Economy"],
+        price : "$15000",
+        date : "27/01/2022",
+        image : "aygo.jpg"
+    },
+    {
+        plate : "16",
+        make : "Renault",
+        model : "Clio",
+        category : ["Subcompact"],
+        price : "$18000",
+        date : "27/01/2022",
+        image : "clio.jpg"
+    },
+    {
+        plate : "17",
+        make : "BMW",
+        model : "430i",
+        category : ["Convertible", "Luxury"],
+        price : "$130000",
+        date : "27/01/2022",
+        image : "430i.jpg"
+    }]
     var toAppend = "";
     
-    carsArray.forEach(function (car) {
+    Cars.forEach(function (car) {
         toAppend += 
         `<div id = "car${car.plate}" class = "eachCar cat-${car.category.join(" cat-")}">
         <h3 class = "category" > ${car.category.join(", ")} </h3>
@@ -176,8 +165,7 @@ function addCat() {
     let newCat = prompt ("which category do you want to add ?").toLowerCase();
     newCat = newCat.slice(0,1).toUpperCase() + newCat.slice(1);         
     categoryNew.push(newCat);
-    catArray.push(newCat);  
-    localStorage.categories = JSON.stringify(catArray); ///////////////////////////////////////////////envoie le array des catégories vers le local storage
+    Categories.push(newCat);  // uniquement pour mettre à jour le array des catégories
     
     createHTMLCategories (catCont, "check-search", categoryNew);
     createHTMLCategories (contCheck, "add-car", categoryNew, "Crea");   
@@ -280,11 +268,10 @@ function searchCategory1() {
 
 function deleteCar(btn, pl) {                               // btn et pl sont les paramètres de la fonction qui reçoit en argument this et ${car.plate}
 btn.parentElement.remove();                             // efface la div sans retirer du array en utilisant btn
-for (let i = 0; i < carsArray.length; i++) {                 // retire du array la voiture qui à été effacée en utilisant pl (la plaque)
-    const car = carsArray[i];                                  
+for (let i = 0; i < Cars.length; i++) {                 // retire du array la voiture qui à été effacée en utilisant pl (la plaque)
+    const car = Cars[i];                                  
     if (car.plate == pl) {
-        carsArray.splice (i , 1);
-        localStorage.cars = JSON.stringify(carsArray); 
+        Cars.splice (i , 1);
         break;
     } 
 }
@@ -307,16 +294,20 @@ let myForm = document.querySelector("#submit-adding-car");
 myForm.addEventListener("click",addNewCar);
 
 
-function addNewCar() {                                 //prépare la voiture à ajouter au array 
+function addNewCar() {                                 //ajoute une voiture au array 
     let plate = document.querySelector(".Plate");
     let make = document.querySelector("#select-make");
     let model = document.querySelector(".Model");
     let price = document.querySelector(".Price");
-    // let myDate = document.querySelector(".my-date");
+    let myDate = document.querySelector(".my-date");
     let errorMessage = document.querySelector(".error");
 
-    let myDate = Intl.DateTimeFormat("fr").format(new Date());              ///////////////////// inscrit la date de création de la fiche
+    myDate = Intl.DateTimeFormat("fr").format(new Date());
     let myDateNbr = new Date().getTime();
+
+    
+    
+    
     
     /***********************  récupère le tableau des catégories et affiche les 2 premières *************************************/   
     
@@ -351,8 +342,7 @@ function addNewCar() {                                 //prépare la voiture à 
             var obj = new Car(Plate, myCategory, make.value, model.value, price.value, myDate, "e350.jpg")   
             }
         
-        carsArray.push(obj);
-        localStorage.cars = JSON.stringify(carsArray);   /////////////////////////////////////////////////// envoie le array des voitures vers le local storage
+        Cars.push(obj);
         createNewCarHTML(obj);
             
         
@@ -447,11 +437,17 @@ class Car {
 document.querySelector("#myResetButton").addEventListener("click", resetHTML);
 
 function resetHTML() {
-    let carsJson = JSON.stringify(JSON.parse(localStorage.carsSauve));
-
-    localStorage.cars = carsJson;
-    
-    // let carsArray = JSON.parse(localStorage.cars);
+    let checkedBoxes = document.querySelectorAll(".check-search:checked");
+    if (checkedBoxes.length == 0) {
+        createHTML();
+    } else { 
+        checkedBoxes.forEach(function(){
+            if (this.checked = true){ 
+                createHTML()  
+                searchCategory() 
+            } 
+        });
+    } 
 }
 
 

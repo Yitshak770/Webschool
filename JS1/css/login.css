@@ -1,0 +1,47 @@
+.login-container {
+    background-color: rgb(213, 253, 222);
+    display : flex;
+    flex-direction: column;
+    width : 25%;
+    margin: auto;
+    border-radius: 5px;
+    box-shadow: rgba(17, 17, 26, 0.1) 0px 8px 24px, rgba(17, 17, 26, 0.1) 0px 16px 56px, rgba(17, 17, 26, 0.1) 0px 24px 80px;
+}
+.welcome {
+    font-size: 20px;
+    padding : 15px;
+}
+
+.login {
+    font-size: 20px;
+    color : grey;
+    padding : 10px;
+
+}
+
+.login-container input{
+
+    padding : 10px;
+    border : 1px solid grey;
+    border-radius: 5px;
+    margin: 5px 10px;
+
+
+}
+/* .email{
+}   
+.password{
+}    */
+.submit{
+    width : 25%;
+    text-align: center;
+    color: grey;
+    background-color: rgba(128, 128, 128, 0.123);
+    cursor: pointer;
+    margin-bottom: 10px!important;
+    align-self :flex-end;
+}
+.submit:hover {
+    background-color: rgba(128, 128, 128, 0.801);
+    color : rgb(213, 253, 222);
+}
