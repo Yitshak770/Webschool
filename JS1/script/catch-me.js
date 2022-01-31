@@ -68,5 +68,8 @@ function endGame () {
     if (C.mn.DOM.innerHTML == 00 && C.sec.DOM.innerHTML == 00){
         document.querySelector(".catchme").classList.remove("rotating");
     };
+    document.querySelector("#ecran H3").innerHTML = " END GAME ";
+    
+    document.querySelector("#ecran H3").style.display = "block";
 }
 ///////////////////////////////FONCTION JEU TERMINE FIN
