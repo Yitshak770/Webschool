@@ -59,6 +59,7 @@ nav, .line {
     color : rgb(30, 30, 30);
     font-size: 16px;
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
 }
 
 .datas{
@@ -66,12 +67,14 @@ nav, .line {
     font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-size: 22px;
     padding: 5px 10px;
-    display: none;
 }
 #winners .datas{
     font-size: 15px;
     padding : 4px;
     
+}
+.time{
+    display: inline-block;
 }
 #ecran{
     flex-basis: 83%;
@@ -89,6 +92,7 @@ nav, .line {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     text-align: center;
     margin-top: 20%;
+    text-shadow: #ff007f 2px 2px 2px;
 }
 .catchme {
     background-color: #7fff00;
@@ -97,8 +101,10 @@ nav, .line {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 30px;
     border-radius: 5px;
     border: 1px solid #ff007f;
+    transform-origin: 50% 50%;
     box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
 }
 .catchme p {
@@ -107,4 +113,37 @@ nav, .line {
     color: #ff007f;
     font-weight: 900;
 
+}
+.winner {
+    display : flex;
+}
+.score-winner {
+    flex-basis: 20%;
+}
+.score-winner p{
+    margin-left: 10px;
+    font-size: 14px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ff007f; 
+    text-align: right; 
+}
+.winner p {
+    margin: 5px 0px 5px 10px;
+    font-size: 14px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 500;
+}
+
+.rotating {
+    animation: rotating 2s linear infinite;
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px;
+}
+ 
+@-webkit-keyframes rotating {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
 }
