@@ -185,6 +185,18 @@ button:hover {
     animation: rotating 2s linear infinite;
     box-shadow: rgba(240, 46, 170, 0.4) 5px 5px;
 }
+.rotating-175 {
+    animation: rotating 1.75s linear infinite;
+}
+.rotating-150 {
+    animation: rotating 1.5s linear infinite;
+}
+.rotating-125 {
+    animation: rotating 1.25s linear infinite;
+}
+.rotating-100 {
+    animation: rotating 1s linear infinite;
+}
  
 @keyframes rotating {
     from{
