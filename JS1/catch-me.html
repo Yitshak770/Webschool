@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/new-reset.css">
     <link rel="stylesheet" href="css/commun.css">
+    <link rel="stylesheet" href="css/etoiles.css">
     <link rel="stylesheet" href="css/catch-me.css">
     <title>Document</title>
 </head>
@@ -23,14 +24,35 @@
     <div class="line">
     </div>
     <main>
-        <button>TEST</button>
-        <div id="container" style="margin-top:80px">
+        <button class = "test">NEW GAME</button>
+        <button class = "manual">MANUAL</button>
+        <div class="manual-text hidden">
+            <h4>Catch Me If You Can!</h4> 
+                <h5>Concept du jeu:</h5>  
+                <p>Cliquez sur la barre rotative avant qu'elle ne se sauve.  Obtenez le plus grand nombre de points avant la fin du chronomètre.</p>
+                <h5>Calcul des points:</h5>
+                <p>Chaque clic vous donne dix points multiplier par le nombre du niveau.  (Le niveau 1 vous donne dix points par clic, le niveau 2 vous donne vingt, etc.)</p>  
+                <p>Cliquer quelque part autre que sur la barre rotative supprime le nombre de points de niveau. (Vous perdez un point au niveau 1, deux points au niveau 2, etc.)</p> 
+                <h5>Le chronomètre:</h5> 
+                <p>Vous commencez avec 60 secondes sur l'horloge.  Chaque niveau que vous passez ajoute encore dix secondes à l'horloge. </p> 
+                <h5>Gagner le jeu:</h5> 
+                <p>Terminez cinq niveaux de dix clics par niveau.</p>   
+                <h5>Défis:</h5>  
+                <p>Au début du jeu, la barre tourne à 360 degrés en 2 secondes. Chaque niveau l'accélère de 0,25 seconde (2 secondes au premier niveau. 1,75 au second niveau, etc.)</p>  
+                <p>Au début du jeu, le survol de la barre déclenche l'échappement après 300 millisecondes.  Après chaque niveau, cette quantité diminue de 50 millisecondes.</p>                 
+        </div>
+        <div id="container">
             <div id="titre"><h1>CATCH ME IF YOU CAN</h1></div>
             <div id="ecran">
-                <div class="catchme">
+                <div id = "catchme" class="catchme">
                     <p>CATCH ME</p>
                 </div>
                 <h3>CLICK ON TITLE TO BEGIN</h3>
+                <div class = "stars hidden" id='stars1'></div>
+                <div class = "stars hidden" id='stars2'></div>
+                <div class = "stars hidden" id='stars3'></div>
+                <div class = "stars hidden" id='stars4'></div>
+                <div class = "stars hidden" id='stars5'></div>
             </div>
             <div id="controles">
                 <div id="scores">
