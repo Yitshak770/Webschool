@@ -168,13 +168,14 @@ button:hover {
     flex-basis: 20%;
 }
 .score-winner p{
-    margin-left: 10px;
+    font-weight: 500;
+    margin: 5px 0px 5px 10px;
     font-size: 14px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: #ff007f; 
     text-align: right; 
 }
-.winner p {
+.winner h6 {
     margin: 5px 0px 5px 10px;
     font-size: 14px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
