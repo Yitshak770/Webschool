@@ -30,19 +30,19 @@ let myTest = 0;
 let temps = 0;
 let chrono = null;
 const C = {
-    mn : {val : 60 , DOM : document.getElementById("mn")},
-    sec : {val : 00 , DOM : document.getElementById("sec")}
+    sec : {val : 60 , DOM : document.getElementById("sec")},
+    mili : {val : 00 , DOM : document.getElementById("mili")}
 };
-C.mn.DOM.innerHTML = "60";
-C.sec.DOM.innerHTML = "00";
+C.sec.DOM.innerHTML = "60";
+C.mili.DOM.innerHTML = "00";
 ///////////////////////////////FONCTION TIMER DEBUT
 function myInterval() {
-    let minute = parseInt(temps / 60)
-    let second = parseInt(temps % 60)
-    minute = minute < 10 ? "0" + minute : minute
-    second = second < 10 ? "0" + second : second
-    C.mn.DOM.innerHTML = `${minute}`
-    C.sec.DOM.innerHTML = `${second}`
+    let seconds = parseInt(temps / 60);
+    let miliseconds = parseInt(temps % 60);
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    miliseconds = miliseconds < 10 ? "0" + miliseconds : miliseconds;
+    C.sec.DOM.innerHTML = `${seconds}`;
+    C.mili.DOM.innerHTML = `${miliseconds}`;
     if (temps <= 0) {
         temps = 0;
         myTest = 11;
@@ -54,7 +54,7 @@ function myInterval() {
 };
 function myTimer() {   
     if (myTest === 55) {
-        chrono = setInterval(myInterval, 1); //17
+        chrono = setInterval(myInterval, 17); //17
     };
 }
 ///////////////////////////////FONCTION TIMER FIN
@@ -192,9 +192,10 @@ function startGame() {
 ///////////////////////////////FONCTION JEU TERMINE DEBUT
 let hisName = "noname";
 let hisPoints = 0;
+let hisDate = new Date().getTime();
 let playerArr = [];
 function endGame () {
-    if (C.mn.DOM.innerHTML == 00 && C.sec.DOM.innerHTML == 00){
+    if (C.sec.DOM.innerHTML == 00 && C.mili.DOM.innerHTML == 00){
         myCatch.classList.remove("rotating");
         myCatch.classList.remove("rotating-100");
         myCatch.classList.remove("rotating-125");
@@ -217,7 +218,7 @@ function endGame () {
     playerArr = JSON.parse(localStorage.allPlayers);    // récupère le array des joueurs
     hisPoints = myScoreCpt - myMissedClicksCpt;             // totalise ses points
     
-    let newPlayer = new player(hisName, hisPoints, new Date().getTime());   
+    let newPlayer = new player(hisName, hisPoints, hisDate);   
     
     playerArr.push(newPlayer); // ajoute le nouveau joueur dans le array des joueurs
     
@@ -237,48 +238,68 @@ function endGame () {
 
 
 /**************************** hight scores 5 premiers DEBUT *********************************************/
-let today = new Date();
-let myDate = Intl.DateTimeFormat("fr").format(new Date());     // format de date française          
-let myDateNbr = new Date().getTime();                          // format date numérique
-// console.log (myDate);
-// console.log (myDateNbr);
-
+  
 
 playerArr = JSON.parse(localStorage.allPlayers);    // récupère le array des joueurs
 afficheWinners();
 
 function afficheWinners() {
-    fisrtWinnerScore = document.querySelector("#first .score-winner p");
-    fisrtWinnerName = document.querySelector("#first h6");
+    let fisrtWinnerScore = document.querySelector("#first .score-winner p");
+    let firstWinnerName = document.querySelector("#first h6");
     fisrtWinnerScore.innerHTML = playerArr[0].hisPoints;
-    fisrtWinnerName.innerHTML = playerArr[0].hisName;
+    firstWinnerName.innerHTML = playerArr[0].hisName;
     
-    secondWinnerScore = document.querySelector("#second .score-winner p");
-    secondWinnerName = document.querySelector("#second h6");
+    let secondWinnerScore = document.querySelector("#second .score-winner p");
+    let secondWinnerName = document.querySelector("#second h6");
     secondWinnerScore.innerHTML = playerArr[1].hisPoints;
     secondWinnerName.innerHTML = playerArr[1].hisName;
     
-    thirdWinnerScore = document.querySelector("#third .score-winner p");
-    thirdWinnerName = document.querySelector("#third h6");
+    let thirdWinnerScore = document.querySelector("#third .score-winner p");
+    let thirdWinnerName = document.querySelector("#third h6");
     thirdWinnerScore.innerHTML = playerArr[2].hisPoints;
     thirdWinnerName.innerHTML = playerArr[2].hisName;
     
-    fourthWinnerScore = document.querySelector("#fourth .score-winner p");
-    fourthWinnerName = document.querySelector("#fourth h6");
+    let fourthWinnerScore = document.querySelector("#fourth .score-winner p");
+    let fourthWinnerName = document.querySelector("#fourth h6");
     fourthWinnerScore.innerHTML = playerArr[3].hisPoints;
     fourthWinnerName.innerHTML = playerArr[3].hisName;
     
-    fifthWinnerScore = document.querySelector("#fifth .score-winner p");
-    fifthWinnerName = document.querySelector("#fifth h6");
+    let fifthWinnerScore = document.querySelector("#fifth .score-winner p");
+    let fifthWinnerName = document.querySelector("#fifth h6");
     fifthWinnerScore.innerHTML = playerArr[4].hisPoints;
     fifthWinnerName.innerHTML = playerArr[4].hisName;
+    
+    fisrtWinnerScore.addEventListener("mouseover", displayDate);
+    firstWinnerName.addEventListener("mouseover", displayDate);
+    fisrtWinnerScore.addEventListener("mouseout", dontDisplayDate);
+    firstWinnerName.addEventListener("mouseout", dontDisplayDate);
+    
+    // let firstWinnerDate = playerArr[0].hisDate;
+    // let myFirstDate = Intl.DateTimeFormat("fr").format(new Date(firstWinnerDate));
+    // let myFirstWinnerDate = document.querySelector("#first .date-winner p")
+    // myFirstWinnerDate.innerHTML = myFirstDate;
+
+    let secondWinnerDate = playerArr[1].hisDate;
+    let mySecondDate = Intl.DateTimeFormat("fr").format(new Date(secondWinnerDate));
+    let mySecondWinnerDate = document.querySelector("#first .date-winner p")
+    mySecondWinnerDate.innerHTML = mySecondDate;
+
+    let thirdWinnerDate = playerArr[2].hisDate;
+    let myThirdDate = Intl.DateTimeFormat("fr").format(new Date(thirdWinnerDate));
+    let myThirdWinnerDate = document.querySelector("#first .date-winner p")
+    myThirdWinnerDate.innerHTML = myThirdDate;
+
+    
+    
+    function displayDate() {
+        myFirstWinnerDate.style.visibility = "visible";   
+        };
+    function dontDisplayDate() {
+        myFirstWinnerDate.style.visibility = "hidden";   
+        };
 }
 
-fisrtWinnerName.addEventListener("mouseover", displayDate);
-function displayDate() {
 
-    alert("toto")
-};
 
 
 class player {

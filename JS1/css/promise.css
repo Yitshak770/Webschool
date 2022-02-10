@@ -1,0 +1,52 @@
+input {
+    border: 1px solid black;
+    display: block;
+    margin : 10px;
+
+}
+input[type=submit] {
+    cursor : pointer;
+    width : 80px;
+    border-radius: 15px;
+    text-align: center;
+}
+.box {
+    background-color: beige;
+    padding : 20px;
+    display: inline-block;
+}
+#buttons {
+    text-align: center;
+}
+.b1, .b2 {
+    display : inline-block;
+    margin: 20px 10px 0px 10px;
+    border: 1px solid black;
+    padding : 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.b1:hover, .b2:hover {
+    color : beige;
+    background-color: black;
+}
+.nohover, .nohover:hover {
+    color : black;
+    background-color: beige;
+    cursor:initial;
+}
+.box p {
+    color :red;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 25px;
+    font-weight: 900;
+}
+.box h6 {
+    background-color: white;
+    display: inline-block;
+    padding : 5px 10px;
+    float : right;
+    margin-bottom: 20px;
+
+}

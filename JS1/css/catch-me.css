@@ -82,7 +82,7 @@ button:hover {
     flex-basis: 13%;
     height : 92%;
     background-color: white;
-    padding: 10px;
+    padding: 5px 10px;
     margin: 0 10px 10px 10px;
     border-radius: 5px;
     display: flex;
@@ -97,6 +97,7 @@ button:hover {
 }
 #winners{
     flex-basis: 28%;
+    padding-bottom: 10px;
 }
 .title {
     padding: 5px 10px;
@@ -163,20 +164,21 @@ button:hover {
 }
 .winner {
     display : flex;
+    flex-wrap: wrap;
 }
 .score-winner {
     flex-basis: 20%;
 }
 .score-winner p{
     font-weight: 500;
-    margin: 5px 0px 5px 10px;
+    margin: 0px 0px 0px 10px;
     font-size: 14px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color: #ff007f; 
     text-align: right; 
 }
 .winner h6 {
-    margin: 5px 0px 5px 10px;
+    margin: 0px 0px 0px 10px;
     font-size: 14px;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     font-weight: 500;
@@ -206,6 +208,19 @@ button:hover {
     to{
         transform: rotate(360deg);
     }
+}
+.date-winner { 
+    flex-basis: 100%; 
+}
+.date-winner p{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size : 9px;
+    background-color: rgb(126, 125, 125);
+    display: inline;
+    color: white;
+    padding : 2px 5px;
+    margin-left: 30%;
+    visibility: hidden;
 }
 
 
