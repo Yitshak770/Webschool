@@ -199,10 +199,33 @@ function startGame() {
 ///////////////////////////////FONCTION STARTGAME FIN
 
 ///////////////////////////////FONCTION ENDGAME DEBUT
+class player {
+    constructor(_hisName, _hisPoints, _hisDate) {
+        this.hisName = _hisName;
+        this.hisPoints = _hisPoints;
+        this.hisDate = _hisDate;
+    }
+}
+
 let hisName = "noname";
 let hisPoints = 0;
 let hisDate = new Date().getTime();
 let playerArr = [];
+
+function initWinners() {
+    if (localStorage.getItem("allPlayers") === null) {
+        let toto1 = new player("noName", 0, 0);
+        let toto2 = new player("noName", 0, 0);
+        let toto3 = new player("noName", 0, 0);
+        let toto4 = new player("noName", 0, 0);
+        let toto5 = new player("noName", 0, 0);
+        playerArr.push(toto1, toto2, toto3, toto4, toto5);
+        localStorage.allPlayers = JSON.stringify(playerArr);
+    }
+}
+initWinners()
+
+
 function endGame () {
     if (C.sec.DOM.innerHTML == 00 && C.mili.DOM.innerHTML == 00){
         myCatch.classList.remove("rotating");
@@ -272,16 +295,16 @@ let myFifthWinnerDate = document.querySelector("#fifth .date-winner p")
 
 function affiche5Winners() { 
     playerArr = JSON.parse(localStorage.allPlayers);    // récupère le array des joueurs
-    let firstWinnerDate = playerArr[0].hisDate;
-    let secondWinnerDate = playerArr[1].hisDate;
-    let thirdWinnerDate = playerArr[2].hisDate;
-    let fourthWinnerDate = playerArr[3].hisDate;
-    let fifthWinnerDate = playerArr[4].hisDate;
-    afficheWinners(fisrtWinnerScore, firstWinnerName, firstWinnerDate, myFirstWinnerDate, 0);
-    afficheWinners(secondWinnerScore, secondWinnerName, secondWinnerDate, mySecondWinnerDate, 1);
-    afficheWinners(thirdWinnerScore, thirdWinnerName, thirdWinnerDate, myThirdWinnerDate, 2);
-    afficheWinners(fourthWinnerScore, fourthWinnerName, fourthWinnerDate, myFourthdWinnerDate, 3);
-    afficheWinners(fifthWinnerScore, fifthWinnerName, fifthWinnerDate, myFifthWinnerDate, 4);
+    let firstWinnerDate = null; if ( playerArr[0].hisDate != 0 ) {firstWinnerDate = playerArr[0].hisDate};
+    let secondWinnerDate = null; if ( playerArr[1].hisDate != 0 ) {secondWinnerDate = playerArr[1].hisDate};
+    let thirdWinnerDate = null; if ( playerArr[2].hisDate != 0 ) {thirdWinnerDate = playerArr[2].hisDate};
+    let fourthWinnerDate = null; if ( playerArr[3].hisDate != 0 ) {fourthWinnerDate = playerArr[3].hisDate};
+    let fifthWinnerDate = null; if ( playerArr[4].hisDate != 0 ) {fifthWinnerDate = playerArr[4].hisDate};
+    if (firstWinnerDate != null) {afficheWinners(fisrtWinnerScore, firstWinnerName, firstWinnerDate, myFirstWinnerDate, 0)};
+    if (secondWinnerDate != null) {afficheWinners(secondWinnerScore, secondWinnerName, secondWinnerDate, mySecondWinnerDate, 1)};
+    if (thirdWinnerDate != null) {afficheWinners(thirdWinnerScore, thirdWinnerName, thirdWinnerDate, myThirdWinnerDate, 2)};
+    if (fourthWinnerDate != null) {afficheWinners(fourthWinnerScore, fourthWinnerName, fourthWinnerDate, myFourthdWinnerDate, 3)};
+    if (fifthWinnerDate != null) {afficheWinners(fifthWinnerScore, fifthWinnerName, fifthWinnerDate, myFifthWinnerDate, 4)};
 }
 
 function afficheWinners(a, b, c, d, e) {
@@ -301,13 +324,6 @@ function afficheWinners(a, b, c, d, e) {
 }
 affiche5Winners();
 
-class player {
-    constructor(_hisName, _hisPoints, _hisDate) {
-        this.hisName = _hisName;
-        this.hisPoints = _hisPoints;
-        this.hisDate = _hisDate;
-    }
-}
 
 /**************************** hight scores 5 premiers FIN *********************************************/
 
