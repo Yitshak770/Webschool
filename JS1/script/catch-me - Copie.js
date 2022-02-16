@@ -8,6 +8,7 @@ function manual() {
 
 
 
+
 /**************************** cliquages DEBUT *********************************************/
 let myH1 = document.querySelector("#titre h1");
 myH1.addEventListener("mouseenter", myHover);
@@ -17,15 +18,8 @@ function myHover() {
         this.innerHTML = " CATCH ME IF YOU CAN";
     });
 };
-myH1.addEventListener("click", starting);
-function starting() {
-    if (window.innerWidth > 1299) {
-        startGame()
-    } else {
-        alert("your creen is too small to play this game, you need at least 1300 pixels and your screen is " + window.innerWidth + " pixels")
-    }
-}
-
+myH1.addEventListener("click", startGame);
+document.querySelector(".new-game").addEventListener("click", newGame);
 /**************************** cliquage FIN *********************************************/
 
 
@@ -33,6 +27,7 @@ function starting() {
 
 /**************************** timer chrono DEBUT *********************************************/
 let myTest = 0;
+let temps = 0;
 let chrono = null;
 const C = {
     sec : {val : 60 , DOM : document.getElementById("sec")},
@@ -40,29 +35,26 @@ const C = {
 };
 C.sec.DOM.innerHTML = "60";
 C.mili.DOM.innerHTML = "00";
-let miliseconds = 99;
-let seconds = 59;
 ///////////////////////////////FONCTION TIMER DEBUT
 function myInterval() {
-    miliseconds --;
-    C.sec.DOM.innerHTML = seconds;
-    if (miliseconds < 0) {
-        miliseconds = 99;
-        seconds --;
-    }
-    (seconds < 10) ? C.sec.DOM.innerHTML = `0${seconds}` : seconds = seconds;
-    (miliseconds < 10) ? miliseconds = `0${miliseconds}` : miliseconds = miliseconds;
-    C.mili.DOM.innerHTML = miliseconds;
-    if(seconds < 1 && miliseconds < 1) {
-        C.mili.DOM.innerHTML = "00";
+    let seconds = parseInt(temps / 60);
+    let miliseconds = parseInt(temps % 60);
+    seconds = seconds < 10 ? "0" + seconds : seconds;
+    miliseconds = miliseconds < 10 ? "0" + miliseconds : miliseconds;
+    C.sec.DOM.innerHTML = `${seconds}`;
+    C.mili.DOM.innerHTML = `${miliseconds}`;
+    if (temps <= 0) {
+        temps = 0;
         myTest = 11;
-        clearInterval(chrono);
-        setTimeout(endGame, 1500);     
-  }
-  }
+        endGame();
+    }  else {
+        temps --
+    }
+    return myTest;
+};
 function myTimer() {   
     if (myTest === 55) {
-        chrono = setInterval(myInterval, 10); 
+        chrono = setInterval(myInterval, 17); //17
     };
 }
 ///////////////////////////////FONCTION TIMER FIN
@@ -145,25 +137,25 @@ function myClicks() {
             myLevelCpt = 5;
             nbr = 150;
             myCatch.classList.add("rotating-100");
-            seconds = seconds + 10;
+            temps = temps + 600;
             break;
         case (clickWinCounter > 29 && clickWinCounter <31) :
             myLevelCpt = 4;
             nbr = 200;
             myCatch.classList.add("rotating-125");
-            seconds = seconds + 10;
+            temps = temps + 600;
             break;
         case (clickWinCounter > 19 && clickWinCounter <21) :
             myLevelCpt = 3;
             nbr = 250;
             myCatch.classList.add("rotating-150");
-            seconds = seconds + 10;
+            temps = temps + 600;
             break;
         case (clickWinCounter > 9 && clickWinCounter < 11) :
             myLevelCpt = 2;
             nbr = 300;
             myCatch.classList.add("rotating-175");
-            seconds = seconds + 10;
+            temps = temps + 600;
             break;
     }
     myLevel.innerHTML = `${myLevelCpt}`;                        
@@ -177,11 +169,10 @@ function myClicks() {
                         
                         
 /**************************** départ et fin du jeu DEBUT *********************************************/
-///////////////////////////////FONCTION STARTGAME DEBUT
+///////////////////////////////FONCTION DEPART DU JEU DEBUT
 function startGame() {    
     alert("Are you ready ?");
-    miliseconds = 99;
-    seconds = 59;
+    temps = 3600;
     myTest = 55;
     myH1.removeEventListener("mouseenter", myHover);
     myH1.removeEventListener("click", startGame);
@@ -196,9 +187,9 @@ function startGame() {
     myEcran.addEventListener("click", myClicks);
     myCatch.addEventListener("click", myWins)
 };
-///////////////////////////////FONCTION STARTGAME FIN
+///////////////////////////////FONCTION DEPART DU JEU FIN
 
-///////////////////////////////FONCTION ENDGAME DEBUT
+///////////////////////////////FONCTION JEU TERMINE DEBUT
 let hisName = "noname";
 let hisPoints = 0;
 let hisDate = new Date().getTime();
@@ -220,15 +211,10 @@ function endGame () {
     });
     myEcran.removeEventListener("click", myClicks);
     myCatch.removeEventListener("click", myWins);
-
-    hisName = prompt("what is your name ?");
-    if (hisName != null) {
-        hisName = hisName.toLowerCase();
-        hisName = hisName.slice(0,1).toUpperCase() + hisName.slice(1);  
-    } else {
-        hisName = "NoName";
-    }
-
+    clearInterval(chrono);
+    hisName = prompt("what is your name ?").toLowerCase();
+    hisName = hisName.slice(0,1).toUpperCase() + hisName.slice(1);  
+    
     playerArr = JSON.parse(localStorage.allPlayers);    // récupère le array des joueurs
     hisPoints = myScoreCpt - myMissedClicksCpt;             // totalise ses points
     
@@ -242,18 +228,18 @@ function endGame () {
     });
     playerArr.pop();                                        // enlève le dernier joueur
     localStorage.allPlayers = JSON.stringify(playerArr); // envoie le tableau à jour vers le local storage
-    affiche5Winners ();
-    
-    document.querySelector(".new-game").addEventListener("click", newGame);
+    afficheWinners();
     
 }
-///////////////////////////////FONCTION ENDGAME FIN
+///////////////////////////////FONCTION JEU TERMINE FIN
 /**************************** départ et fin du jeu FIN *********************************************/
 
 
 
 
 /**************************** hight scores 5 premiers DEBUT *********************************************/
+  
+
 let fisrtWinnerScore = document.querySelector("#first .score-winner p");
 let firstWinnerName = document.querySelector("#first h6");
 let myFirstWinnerDate = document.querySelector("#first .date-winner p")
@@ -270,36 +256,37 @@ let fifthWinnerScore = document.querySelector("#fifth .score-winner p");
 let fifthWinnerName = document.querySelector("#fifth h6");
 let myFifthWinnerDate = document.querySelector("#fifth .date-winner p")
 
-function affiche5Winners() { 
-    playerArr = JSON.parse(localStorage.allPlayers);    // récupère le array des joueurs
-    let firstWinnerDate = playerArr[0].hisDate;
-    let secondWinnerDate = playerArr[1].hisDate;
-    let thirdWinnerDate = playerArr[2].hisDate;
-    let fourthWinnerDate = playerArr[3].hisDate;
-    let fifthWinnerDate = playerArr[4].hisDate;
-    afficheWinners(fisrtWinnerScore, firstWinnerName, firstWinnerDate, myFirstWinnerDate, 0);
-    afficheWinners(secondWinnerScore, secondWinnerName, secondWinnerDate, mySecondWinnerDate, 1);
-    afficheWinners(thirdWinnerScore, thirdWinnerName, thirdWinnerDate, myThirdWinnerDate, 2);
-    afficheWinners(fourthWinnerScore, fourthWinnerName, fourthWinnerDate, myFourthdWinnerDate, 3);
-    afficheWinners(fifthWinnerScore, fifthWinnerName, fifthWinnerDate, myFifthWinnerDate, 4);
-}
+playerArr = JSON.parse(localStorage.allPlayers);    // récupère le array des joueurs
+let firstWinnerDate = playerArr[0].hisDate;
+let secondWinnerDate = playerArr[1].hisDate;
+let thirdWinnerDate = playerArr[2].hisDate;
+let fourthWinnerDate = playerArr[3].hisDate;
+let fifthWinnerDate = playerArr[4].hisDate;
+afficheWinners(fisrtWinnerScore, firstWinnerName, firstWinnerDate, myFirstWinnerDate, 0);
+afficheWinners(secondWinnerScore, secondWinnerName, secondWinnerDate, mySecondWinnerDate, 1);
+afficheWinners(thirdWinnerScore, thirdWinnerName, thirdWinnerDate, myThirdWinnerDate, 2);
+afficheWinners(fourthWinnerScore, fourthWinnerName, fourthWinnerDate, myFourthdWinnerDate, 3);
+afficheWinners(fifthWinnerScore, fifthWinnerName, fifthWinnerDate, myFifthWinnerDate, 4);
 
 function afficheWinners(a, b, c, d, e) {
     a.innerHTML = playerArr[e].hisPoints;
-    b.innerHTML = playerArr[e].hisName;   
+    b.innerHTML = playerArr[e].hisName;
+    
     a.addEventListener("mouseover", displayDate);
     b.addEventListener("mouseover", displayDate);
     a.addEventListener("mouseout", dontDisplayDate);
     b.addEventListener("mouseout", dontDisplayDate);
+    
     d.innerHTML = Intl.DateTimeFormat("fr").format(new Date(c));
+   
     function displayDate() {
         d.style.visibility = "visible";   
-    };
+        };
     function dontDisplayDate() {
         d.style.visibility = "hidden";   
-    };    
+        };    
 }
-affiche5Winners();
+
 
 class player {
     constructor(_hisName, _hisPoints, _hisDate) {
@@ -308,6 +295,10 @@ class player {
         this.hisDate = _hisDate;
     }
 }
+
+
+
+
 
 /**************************** hight scores 5 premiers FIN *********************************************/
 
@@ -319,9 +310,7 @@ class player {
 function newGame() {
     myTest = 15;
     clearInterval(chrono);
-    myCatch.style.top = "15px";
-    myCatch.style.left = "10px";
-    C.sec.DOM.innerHTML = "60";
+    C.mn.DOM.innerHTML = "60";
     document.querySelector("#ecran H3").innerHTML = "CLICK ON TITLE TO BEGIN";
     let stars = document.querySelectorAll(".stars");
     stars.forEach (function(x){
@@ -341,6 +330,7 @@ function newGame() {
     myPoints.innerHTML = `${myPointsCpt}`;
     myLevel.innerHTML = `${myLevelCpt}`;
     myScore.innerHTML = `${myScoreCpt}`; 
-    myMissedClicks.innerHTML = `${myMissedClicksCpt}`;  
+    myMissedClicks.innerHTML = `${myMissedClicksCpt}`;
+
 }
 /**************************** new game FIN *********************************************/

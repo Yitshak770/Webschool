@@ -73,3 +73,21 @@ tests.appendChild(div);
 
     
     
+    
+    // for(var i=0; i<=myArray.length; i++) {
+        //     let j = i+1
+        //     window['arr'+j] = myArray[i];
+        // }
+        
+    var myArray = [[10, 20, 30, 40], [22, 10, 12, 14], [16, 18, 42, 22]];
+    let j = 0;
+    myArray.forEach( i => {
+        j++
+        window['arr'+j] = myArray[j-1];
+    });
+
+    div.innerText += `.\n Au départ j'ai le Array ci-dessous qui contient 3 Arrays \n [[10, 20, 30, 40], [22, 10, 12, 14], [16, 18, 42, 22]] \n je veux récupérer les 3 arrays de façon indépendante et voici le résultat :  \narr1 = ${arr1} ;\n arr2 = ${arr2} ;\n arr3 = ${arr3}. \n La difficulté était de créer arr1, arr2 et arr3 de façon dynamique afin que cela fonctionne quel que soit le nombre de arrays contenus dans le array de départ.`
+    ;
+    
+    
+   
