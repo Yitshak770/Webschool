@@ -6,12 +6,13 @@ var user = null;                                            // déclare user
 export function init() {
     user = Model.getUserInfo();                             // écrase user en lui donnant une nouvelle valeur : celle qui est retournée de la fonction getUserInfo dans model.js
     if (!user) {                                            // si user (tel qu'il est retourné depuis model.js) n'existe pas, 
-        var fName = prompt("What is your name ?");          // un prompt lui demande son nom et l'attribue à la variable fName
-        var email = prompt("What is your email ?");         // un prompt lui demande son email et l'attribue à la variable email
+        var fName = "toto"//prompt("What is your name ?");          // un prompt lui demande son nom et l'attribue à la variable fName
+        var email = "tata"//prompt("What is your email ?");         // un prompt lui demande son email et l'attribue à la variable email
         user = Model.addUser(fName, email);                 // lance l'exécution de addUser dans model.js avec fName et email en arguments et en récupére les valeurs de 
     };                                                      //                                                           l'objet user qui est retournée par la fonction (dans model.js)
     var h1 = View.welcomeUser(user);                        // lance l'exécution de welcomeUser dans view.js avec user en argument et en récupére la valeur du h1 retounée par la fonction                
     h1.addEventListener("click", changeName)                // si on clique sur ce h1 on déclanche l'exécution de changeName qui va récupérer puis envoyer la valeur de fName dans model.js
+
 };
 
 function changeName() {
