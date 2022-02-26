@@ -1,12 +1,9 @@
-export class SpecialInput extends HTMLInputElement {                        // crée ma classe de input (specialInput) avec un design spécifique pour tous les input du site 
-    constructor(_css, _type, _placeholder, _id, _class, _name, _value) {    // définit un constructeur avec les propriétés de l'input qui seront entrées en argument
+export class SpecialButton extends HTMLButtonElement {                        // crée ma classe de input (specialInput) avec un design spécifique pour tous les input du site 
+    constructor(_css, _class, _id, _innerText) {    // définit un constructeur avec les propriétés de l'input qui seront entrées en argument
       super();                                                              // crée tout ce qui se trouve dans le HTMLInputElement par défaut 
-      this.type = _type;
-      this.placeholder = _placeholder;
       this.id = _id;
       this.class = _class;
-      this.name = _name;
-      this.value = _value;
+      this.innerText = _innerText;
       this.style.fontSize = "20px";                                         // attribue une taille de police par défaut au input
       this.style.padding = "10px";                                          // attribue un padding par défaut au input
       this.style.marginLeft = "30px";                                       // attribue un margin-left par défaut au input
@@ -36,4 +33,4 @@ export class SpecialInput extends HTMLInputElement {                        // c
     }
   }
   
-  customElements.define("special-inputs", SpecialInput, { extends: "input" });    // déclaration de ma classe specialInput afin qu'elle puisse être utilisée en tant que input
+  customElements.define("special-button", SpecialButton, { extends: "button" });    // déclaration de ma classe specialInput afin qu'elle puisse être utilisée en tant que input
