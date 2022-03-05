@@ -1,0 +1,211 @@
+nav, .line {
+    position: relative;
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+.line {
+    margin: 0px auto;
+    left: unset;
+    transform: unset;
+}
+button {
+    cursor: pointer;
+    border: #ff007f 1px solid;
+    padding: 10px;
+    background-color: #80ff0041;
+    color: #ff007f;
+    border-radius: 5px;
+    margin-top: 60px;
+    margin-right: 5%;
+    margin-left: 5%;
+}
+button:hover {
+    background-color: #7fff00;
+}
+.manual {
+    float: right;  
+}
+.manual-text {
+    border: #ff007f solid 5px;
+    width : 40%;
+    padding: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 14px;
+    position: absolute;
+    left : 30%;
+    top : 30%;
+    background-color: white;
+    z-index: 5;
+}
+.manual-text h4 {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 900;
+}
+.manual-text H5 {
+    font-weight: 900;
+    margin-top: 20px;
+}
+.manual-text p {
+    text-align: justify;
+}
+#container {
+    background-color: rgba(196, 233, 235, 0.61);
+    width : 98.9vw;
+    height : 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top : 10px;
+}
+#titre {
+    flex-basis: 30%;
+    padding: 10px;
+    text-align: center;
+    font-size: 25px;
+    color : rgb(30, 30, 30);
+    transition: all 1s linear;
+}
+#titre h1 {
+    margin : 0!important;
+    text-shadow: #ff007f 0.5px 0.5px 0.5px;
+}
+.hidden {
+    display : none;
+}
+.show {
+    display : block;
+}
+#controles {
+    flex-basis: 13%;
+    height : 88%;
+    background-color: white;
+    padding: 5px 10px;
+    margin: 0 10px 10px 10px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+}
+#scores, #points, #level, #clicks, #timer, #winners {
+    background-color: rgba(196, 233, 235, 0.61);
+    border-radius: 5px;
+    margin: 5px 0px;
+    flex-basis: 11%;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+#winners{
+    flex-basis: 42%;
+    padding-bottom: 10px;
+    overflow-y: scroll;
+}
+.title {
+    padding: 5px 10px;
+    color : rgb(30, 30, 30);
+    font-size: 16px;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-style: italic;
+}
+.datas{
+    color : #ff007f;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size: 22px;
+    padding: 5px 10px;
+}
+#winners .datas{
+    font-size: 15px;
+    padding : 4px;
+}
+.time{
+    display: inline-block;
+}
+#ecran{
+    flex-basis: 83%;
+    height : 88%;
+    background-color: rgb(30, 30, 30);
+    padding: 10px;
+    margin: 0 10px 10px 10px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 30px 90px;
+    cursor:crosshair;
+    position: relative;
+}
+#ecran h3 {
+    color : rgba(196, 233, 235, 0.61);
+    font-size: 50px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    text-align: center;
+    margin-top: 20%;
+    text-shadow: #ff007f 2px 2px 2px;
+}
+.catchme {
+    position: absolute;
+    background-color: #7fff00;
+    width : 90px;
+    height : 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+    border-radius: 5px;
+    border: 1px solid #ff007f;
+    transition: all 0.5s;
+    transform-origin: 50% 50%;
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px, rgba(240, 46, 170, 0.3) 10px 10px, rgba(240, 46, 170, 0.2) 15px 15px, rgba(240, 46, 170, 0.1) 20px 20px, rgba(240, 46, 170, 0.05) 25px 25px;
+}
+.catchme p {
+    font-size: 12px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ff007f;
+    font-weight: 900;
+}
+.winner {
+    display : flex;
+    flex-wrap: wrap;
+}
+.score-winner {
+    flex-basis: 20%;
+}
+.score-winner p{
+    font-weight: 500;
+    margin: 0px 0px 0px 10px;
+    font-size: 14px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ff007f; 
+    text-align: right; 
+}
+.winner h6 {
+    margin: 0px 0px 0px 10px;
+    font-size: 14px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: 500;
+}
+.rotating {
+    animation: rotating 2s linear infinite;
+    box-shadow: rgba(240, 46, 170, 0.4) 5px 5px;
+}
+@keyframes rotating {
+    from{
+        transform: rotate(0deg);
+    }
+    to{
+        transform: rotate(360deg);
+    }
+}
+.date-winner { 
+    flex-basis: 100%; 
+    visibility: hidden;
+    
+}
+.date-winner p{
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-size : 9px;
+    color: white;
+    padding : 2px 3px;
+    text-align: center;
+    margin: 3px 30%;
+    background-color: rgb(126, 125, 125);
+}
+.winner:hover .date-winner {
+    visibility: visible;
+}
+
