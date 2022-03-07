@@ -22,9 +22,9 @@ function myHover() {
 myH1.addEventListener("click", starting);
 function starting() {
     if (window.innerWidth > 1299) {
-        startGame()
+        openModale(`Are you ready ?`, "No", "Yes", START)
     } else {
-        alert("your creen is too small to play this game, you need at least 1300 pixels and your screen is " + window.innerWidth + " pixels")
+        openModale("your creen is too small to play this game, you need at least 1300 pixels and your screen is " + window.innerWidth + " pixels")
     }
 }
 
@@ -179,11 +179,95 @@ function myClicks() {
                         
                         
 /**************************** départ et fin du jeu DEBUT *********************************************/
-///////////////////////////////FONCTION STARTGAME DEBUT
-function startGame() {    
-    alert("Are you ready ?");
+
+///////////////////////////////CREATION DE LA MODALE
+let modale = document.querySelector('modale');
+let main = document.querySelector('main');
+let myStartButton = "";
+
+function modaleHtml(modaleText, button1Text, button2Text, myFunction, input) {                                                     
+    var myModale = document.createElement("div");
+    myModale.id = "modale";
+    var modaleContainer = document.createElement("div");
+    modaleContainer.id = "modale-container";
+
+    var img = document.createElement("img");
+            img.src = "./assets/close-W.png";
+            img.id = "modale-close";
+            modaleContainer.appendChild(img); 
+            
+    var h2 = document.createElement("h2");         
+    h2.innerHTML = `${modaleText}`;           
+    modaleContainer.appendChild(h2);  
+    
+    if (input) {
+        var div1 = document.createElement("div");
+        div1.id="modale-input";
+    
+        var input1 = document.createElement("input");
+        input1.type = "text";
+        input1.id = "modale-input1";
+        div1.appendChild(input1);
+    
+        modaleContainer.appendChild(div1);
+    }
+                
+    var div2 = document.createElement("div");
+    div2.id="modale-button-container";
+    
+    if (button1Text) {
+        var btn1 = document.createElement("button");
+        btn1.id = "modale-cancel";
+        btn1.innerText = `${button1Text}`;
+        div2.appendChild(btn1);
+    }
+    
+    if (button2Text) {
+        var btn2 = document.createElement("button");
+        btn2.id = "modale-send";
+        btn2.innerText = `${button2Text}`;
+        div2.appendChild(btn2);
+    }
+    
+    modaleContainer.appendChild(div2);
+    
+    myModale.appendChild(modaleContainer);
+    modale.appendChild(myModale);
+
+    myStartButton = document.querySelector("#modale-send");
+    if (button2Text) {
+        myStartButton.addEventListener("click", myFunction);
+    }
+
+    if (button1Text) {
+        document.querySelector("#modale-cancel").addEventListener("click", closeModale);
+    }
+    document.querySelector("#modale-close").addEventListener("click", closeModale);
+
+}
+
+///////////////////////////////OUVERTURE ET FERMETURE DE LA MODALE
+
+function openModale(a, b , c, d, e) {
+    modaleHtml(a, b , c, d, e);
+    const myTimeout = setTimeout(() => {
+        document.querySelector("#modale").style.visibility = "visible";
+        document.querySelector("#modale").style.opacity = 1;
+    }, 50);       
+}
+
+function closeModale() {
+    document.querySelector("#modale").style.visibility = "hidden";
+    document.querySelector("#modale").style.opacity = 0;
+    modale.innerText = "";
+}
+
+///////////////////////////////FONCTION openModale DEBUT
+const START = function startYourGame() { 
+    myStartButton.removeEventListener("click", START);
+    closeModale()   
     miliseconds = 99;
-    seconds = 15;//----------------------------------------------------------------------------------------------------------------------------
+    seconds = 10;//----------------------------------------------------------------------------------------------------------------------------
     myTest = 55;
     myH1.style.cursor ="default";
     myH1.removeEventListener("mouseenter", myHover);
@@ -199,7 +283,8 @@ function startGame() {
     myEcran.addEventListener("click", myClicks);
     myCatch.addEventListener("click", myWins)
 };
-///////////////////////////////FONCTION STARTGAME FIN
+
+///////////////////////////////FONCTION openModale FIN
 
 ///////////////////////////////FONCTION ENDGAME DEBUT
 class player {
@@ -217,6 +302,7 @@ let json = localStorage.allPlayers;
 let playerArr = json ? JSON.parse(json) : [];
 
 
+
 function endGame () {
     if (C.sec.DOM.innerHTML == 00 && C.mili.DOM.innerHTML == 00){
         myCatch.classList.remove("rotating");
@@ -230,32 +316,48 @@ function endGame () {
     });
     myEcran.removeEventListener("click", myClicks);
     myCatch.removeEventListener("click", myWins);
+    
+    const END = function() {
 
-    hisName = prompt("what is your name ?");
-    if (hisName != null) {
-        hisName = hisName.toLowerCase();
-        hisName = hisName.slice(0,1).toUpperCase() + hisName.slice(1);  
-    } else {
-        hisName = "NoName";
+        let modaleInput = document.querySelector("#modale-input1")     
+        hisName = modaleInput.value; 
+
+        if (hisName != null) {
+            hisName = hisName.toLowerCase();
+            hisName = hisName.slice(0,1).toUpperCase() + hisName.slice(1);  
+        } else {
+            hisName = "NoName"
+        }
+        
+        myStartButton.removeEventListener("click", END);
+        closeModale()    
+        console.log(hisName);
+
+
+        //playerArr = JSON.parse(json);    // récupère le array des joueurs
+        hisPoints = myScoreCpt - myMissedClicksCpt;             // totalise ses points
+        
+        let newPlayer = new player(hisName, hisPoints, hisDate);   
+        
+        playerArr.push(newPlayer); // ajoute le nouveau joueur dans le array des joueurs
+        
+        playerArr.sort((a, b) => {                              // trie le array des joueurs
+            return b.hisPoints - a.hisPoints;
+        });
+        if (playerArr.length > 5) playerArr.pop();                                        // enlève le dernier joueur
+        localStorage.allPlayers = JSON.stringify(playerArr); // envoie le tableau à jour vers le local storage
+        affiche5Winners ();
+        
+        document.querySelector(".new-game").addEventListener("click", newGame);
+
     }
+        
+    openModale("what is your name ?", "Cancel", "Send", END, "0");
 
-    //playerArr = JSON.parse(json);    // récupère le array des joueurs
-    hisPoints = myScoreCpt - myMissedClicksCpt;             // totalise ses points
-    
-    let newPlayer = new player(hisName, hisPoints, hisDate);   
-    
-    playerArr.push(newPlayer); // ajoute le nouveau joueur dans le array des joueurs
-    
-    playerArr.sort((a, b) => {                              // trie le array des joueurs
-        return b.hisPoints - a.hisPoints;
-    });
-    if (playerArr.length > 5) playerArr.pop();                                        // enlève le dernier joueur
-    localStorage.allPlayers = JSON.stringify(playerArr); // envoie le tableau à jour vers le local storage
-    affiche5Winners ();
-    
-    document.querySelector(".new-game").addEventListener("click", newGame);
-    
 }
+
+
+
 ///////////////////////////////FONCTION ENDGAME FIN
 /**************************** départ et fin du jeu FIN *********************************************/
 

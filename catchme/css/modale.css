@@ -1,0 +1,111 @@
+#btn-decl{
+    background-color: brown;
+    border: 1px solid black;
+    padding : 20px 30px;
+    cursor: pointer;
+    margin: 20px;
+    z-index: 1000;
+    border-radius: 4px;
+    color : white;
+}
+#btn-decl:hover {
+    background-color: blueviolet;
+}
+#modale {
+    background-color: rgba(128, 128, 128, 0.25);
+    width : 100vw;
+    height : 100vh;
+    position: fixed;
+    z-index: 900;
+    visibility: hidden;  
+    opacity: 0;
+    transition: all 0.6s ease-in-out;
+}
+#modale-container {
+    background-color: rgb(255, 255, 255);
+    width : 460px;
+    border-radius: 0px 30px 0px 30px;
+    box-shadow: 5px 10px 10px grey;
+    margin: 50px auto;
+    position : relative;
+    display: flex;
+    flex-direction: column;
+}
+#modale-close {
+    border-radius: 50%;
+    position: absolute;
+    top : 10px;
+    right : 10px;
+    background-color: rgb(230, 23, 23);
+    text-align: center;
+    width : 30px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+}
+#modale-close:hover {
+    background-color: red;
+}
+#modale-container H2 {
+    text-align: center;
+    margin: 50px 0 -40px 0;
+    font-size: 45px;
+    font-style: italic;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 20px;
+    text-shadow: #ff007f 2px 2px 2px;
+    color: rgb(78, 78, 78);
+}
+#modale-container H3 {
+    text-align: center;
+    font-size: 16px;
+    margin: 0 auto 20px;
+    width : 80%;
+}
+#modale-input {
+    display : flex;
+    flex-direction: column;
+    width : 80%;
+    margin: auto ;
+    
+}
+/* #modale-input label {
+    font-size: 16px;
+    padding: 10px 0 5px 0;
+} */
+#modale-input1 {
+    position: relative;
+    top : 80px;
+    border : 1px rgba(128, 128, 128, 0.623) solid;
+    font-size: 25px;
+    padding: 10px;
+    border-radius: 2px;
+    margin-bottom: 35px;
+}
+#modale-input1:hover {
+    background-color: rgba(196, 196, 196, 0.192);
+    border : 1px rgba(41, 41, 41, 0.925)  solid;
+}
+#modale-button-container{
+    display: flex;
+    justify-content: space-around; 
+    align-items: center;
+    padding: 30px;
+    width : 80%;
+    margin: 0 auto 20px;
+}
+#modale-button-container button {
+    border : 1px grey solid;
+    min-width : 100px;
+    font-size: 16px;
+    text-align: center;
+    padding: 10px;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+}
+#modale-button-container button:hover {
+    background-color: rgba(128, 128, 128, 0.055);
+    box-shadow: rgba(100, 100, 100, 0.233) 0px 5px 12px 0px;
+}
+
+
+
