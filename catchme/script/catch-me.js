@@ -267,7 +267,7 @@ const START = function startYourGame() {
     myStartButton.removeEventListener("click", START);
     closeModale()   
     miliseconds = 99;
-    seconds = 10;//----------------------------------------------------------------------------------------------------------------------------
+    seconds = 59;//----------------------------------------------------------------------------------------------------------------------------
     myTest = 55;
     myH1.style.cursor ="default";
     myH1.removeEventListener("mouseenter", myHover);
@@ -322,12 +322,10 @@ function endGame () {
         let modaleInput = document.querySelector("#modale-input1")     
         hisName = modaleInput.value; 
 
-        if (hisName != null) {
+       
             hisName = hisName.toLowerCase();
             hisName = hisName.slice(0,1).toUpperCase() + hisName.slice(1);  
-        } else {
-            hisName = "NoName"
-        }
+        
         
         myStartButton.removeEventListener("click", END);
         closeModale()    
